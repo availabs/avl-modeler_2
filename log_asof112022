@@ -1,0 +1,1000 @@
+ 1012  conda activate asim
+ 1013  conda install flask
+ 1014  python index.py
+ 1015  flask index.py
+ 1016  flask --version
+ 1017  export FLASK_APP=index
+ 1018  flask run
+ 1019  conda install sqlite
+ 1020  python database/create.py 
+ 1021  ls database/
+ 1022  python database/create.py 
+ 1023  ls database/
+ 1024  cd database/
+ 1025  python create.py 
+ 1026  ls
+ 1027  cd ..
+ 1028  ls
+ 1029  rm activitysimserver.sqlite 
+ 1030  ls
+ 1031  rm database/activitysimserver.sqlite 
+ 1032  python database/create.py 
+ 1033  sudo apt-get install sqlitebrowser 
+ 1034  python database/create.py 
+ 1035  python database/insert_test_data.py 
+ 1036  history>history.log
+ 1037  flask run
+ 1038  npm start
+ 1039  git add .
+ 1040  git commit -m 'update barcharts'
+ 1041  git pull
+ 1042  git push
+ 1043  npm start
+ 1044  ls
+ 1045  cd database/
+ 1046  python create.py
+ 1047  python insert_test_data.py 
+ 1048  conda activate asim
+ 1049  python index.py
+ 1050  flask index.py
+ 1051  flask run
+ 1052  flask --version
+ 1053  export FLASK_APP=index
+ 1054  flask run
+ 1055  conda config --show channels
+ 1056  conda list
+ 1057  git add .
+ 1058  git add.
+ 1059  conda activate asim
+ 1060  flask run
+ 1061  export FLASK_APP=index
+ 1062  flask run
+ 1063  python index.py
+ 1064  flask run
+ 1065  cd AVAIL/code
+ 1066  ls
+ 1067  cd backup/
+ 1068  ls
+ 1069  mkdir avl-modeler-working
+ 1070  ls
+ 1071  cd avl-modeler-working/
+ 1072  git clone https://github.com/availabs/avl-modeler.git
+ 1073  ls
+ 1074  rm -rf avl-modeler/
+ 1075  ls
+ 1076  cd ..
+ 1077  git clone https://github.com/availabs/avl-modeler.git
+ 1078  cd avl-modeler
+ 1079  npm start
+ 1080  sudo apt-get update
+ 1081  sudo apt-get install clamav clamav-daemon
+ 1082  clamscan --version
+ 1083  git init
+ 1084  git add .
+ 1085  git commit -m 'initial commit'
+ 1086  cd src
+ 1087  cd modules/
+ 1088  git submodule add https://github.com/availabs/avl-components.git .
+ 1089  git submodule add https://github.com/availabs/avl-components.git 
+ 1090  ls
+ 1091  rm -rf avl-components/
+ 1092  rm -rf avl-graph/
+ 1093  git submodule add https://github.com/availabs/avl-components.git 
+ 1094  cd avl-components/
+ 1095  git checkout 1.1.0
+ 1096  git pull
+ 1097  git status
+ 1098  cd ..
+ 1099  npm install
+ 1100  npm start
+ 1101  npm install @headlessui/react
+ 1102  npm start
+ 1103  ls
+ 1104  cd src/modules/
+ 1105  git submodule add https://github.com/availabs/avl-map.git .
+ 1106  l
+ 1107  git submodule add https://github.com/availabs/avl-map.git
+ 1108  ls
+ 1109  cd avl-
+ 1110  cd avl-map/
+ 1111  git status
+ 1112  ls
+ 1113  git pull origin master
+ 1114  cd ../
+ 1115  cd .//
+ 1116  cd ../
+ 1117  npm install lodash.flatten papaparse jszip filesaver @turf/turf --save
+ 1118  npm start
+ 1119  npm i @heroicons/react
+ 1120  npm install file-saver --save
+ 1121  cd database/
+ 1122  python create.py 
+ 1123  python insert_test_data.py 
+ 1124  cd ..
+ 1125  ls database/
+ 1126  cd database/
+ 1127  cd ..
+ 1128  python database/create.py 
+ 1129  python database/insert_test_data.py 
+ 1130  cd database/
+ 1131  python create.py 
+ 1132  python insert_test_data.py 
+ 1133  ls
+ 1134  rm rf activitysimserver.sqlite 
+ 1135  ls
+ 1136  python create.py 
+ 1137  python insert_test_data.py 
+ 1138  ls
+ 1139  rm activitysimserver.sqlite 
+ 1140  python create.py 
+ 1141  python insert_test_data.py 
+ 1142  rm activitysimserver.sqlite 
+ 1143  python create.py 
+ 1144  python insert_test_data.py 
+ 1145  rm activitysimserver.sqlite 
+ 1146  python create.py 
+ 1147  rm activitysimserver.sqlite 
+ 1148  python create.py 
+ 1149  python insert_test_data.py 
+ 1150  python create.py 
+ 1151  python insert_test_data.py 
+ 1152  rm activitysimserver.sqlite 
+ 1153  python create.py 
+ 1154  python insert_test_data.py 
+ 1155  rm activitysimserver.sqlite 
+ 1156  python create.py 
+ 1157  python insert_test_data.py 
+ 1158  cd ..
+ 1159  git clone https://github.com/availabs/ppdaf-layout.git
+ 1160  mv ppdaf-layout/
+ 1161  mv ppdaf-layout/ avl-modeler 
+ 1162  cd avl-modeler/
+ 1163  rm -rf .git
+ 1164  cd ..
+ 1165  git clone https://github.com/availabs/ppdaf-layout.git
+ 1166  mv ppdaf-layout/ avl-modeler2
+ 1167  cd avl-modeler2
+ 1168  rm -rf .git
+ 1169  python insert_test_data.py 
+ 1170  cd ..
+ 1171  cd activity_sim_server/
+ 1172  cd database/
+ 1173  ls
+ 1174  rm activitysimserver.sqlite 
+ 1175  python create.py 
+ 1176  python insert_test_data.py 
+ 1177  rm activitysimserver.sqlite 
+ 1178  python create.py 
+ 1179  python insert_test_data.py 
+ 1180  cd ../
+ 1181  ls
+ 1182  less README.md 
+ 1183  conda activate asim
+ 1184  python index.py 
+ 1185  flask run
+ 1186  flask run index.py 
+ 1187  ls
+ 1188  less README.md 
+ 1189  ls
+ 1190  flask run
+ 1191  chmod ./envars.sh +x
+ 1192  chmod +x ./envars.sh
+ 1193  ./envars.sh 
+ 1194  flask run
+ 1195  export FLASK_APP=index
+ 1196  flask run
+ 1197  history > history1.log
+ 1198  flask run
+ 1199  conda install -c anaconda flask-cors
+ 1200  conda list
+ 1201  conda install -c anaconda flask-cors
+ 1202  conda list
+ 1203  flask run
+ 1204  conda install -U flask-cors
+ 1205  conda install -c conda-forge flask-cors
+ 1206  cd database/
+ 1207  make
+ 1208  ls
+ 1209  ls -lah
+ 1210  ls
+ 1211  make
+ 1212  ls
+ 1213  rm -rf data/
+ 1214  rm counties.zip 
+ 1215  make
+ 1216  ls
+ 1217  cd data/
+ 1218  ls
+ 1219  cd ../
+ 1220  make
+ 1221  make -all
+ 1222  make all
+ 1223  make
+ 1224  unzip -d data/csv_pny.zip
+ 1225  unzip data/csv_pny.zip
+ 1226  ls
+ 1227  ls data/
+ 1228  mamke
+ 1229  make
+ 1230  ls
+ 1231  make
+ 1232  ls
+ 1233  make
+ 1234  ls
+ 1235  ls data/
+ 1236  less data/
+ 1237  ls data/
+ 1238  ll
+ 1239  rm -rf psam_p36.csv 
+ 1240  ls
+ 1241  ls data/
+ 1242  ls
+ 1243  rm -rf data/
+ 1244  make
+ 1245  unzip -p data/csv_pny.zip /psam_h36.csv > data/psam_h36.csv
+ 1246  ls data/
+ 1247  rm -rf data/
+ 1248  make
+ 1249  ls data/
+ 1250  rm -rf data/
+ 1251  nmake
+ 1252  make
+ 1253  ls data/
+ 1254  less data/psam_h36.csv 
+ 1255  unzip -p data/csv_hny.zip /psam_h36.csv > data/psam_h36.csv
+ 1256  unzip -p data/csv_hny.zip psam_h36.csv > data/psam_h36.csv
+ 1257  less data/psam_h36.csv 
+ 1258  rm -rf data/
+ 1259  make
+ 1260  pip install pandas
+ 1261  python import_csv.py 
+ 1262  python import_csv_1.py 
+ 1263  python load_csv.py 
+ 1264  npm start
+ 1265  cd ..
+ 1266  cd backup/
+ 1267  ls
+ 1268  cd avl-modeler-working/
+ 1269  ls
+ 1270  cd ..
+ 1271  cd home
+ 1272  ls
+ 1273  cd jin
+ 1274  cd AVAIL/code
+ 1275  ls
+ 1276  cd avl-modeler
+ 1277  npm start
+ 1278  cd server/
+ 1279  ls -lah
+ 1280  ls
+ 1281  history > history1.log
+ 1282  npm i react-select
+ 1283  git pull
+ 1284  git add .
+ 1285  git commit     selectedACSKeys.push(
+ 1286  git add .
+ 1287  git commit -m 'update variable selector'
+ 1288  git pull
+ 1289  git push
+ 1290  cd server/
+ 1291  ls
+ 1292  activate asim
+ 1293  cpmda activate asim
+ 1294  conda activate asim
+ 1295  flask run
+ 1296  export FLASK_APP=index
+ 1297  flask run
+ 1298  top
+ 1299  ls
+ 1300  top
+ 1301  shutdown -r now
+ 1302  npm start
+ 1303  cd server/
+ 1304  flask run
+ 1305  conda activate asim
+ 1306  flask run
+ 1307  ./envars.sh 
+ 1308  flask run
+ 1309  export FLASK_APP=index
+ 1310  flask run
+ 1311  source /home/jin/miniconda2/bin/activate /home/jin/miniconda3/envs/asim
+ 1312  ls
+ 1313  cd AVAIL/code/activity_sim_server/
+ 1314  ls
+ 1315  ll
+ 1316  mkdir lib
+ 1317  ls
+ 1318  git status
+ 1319  cd ../
+ 1320  l
+ 1321  cd server/
+ 1322  ls
+ 1323  less .git
+ 1324  ll
+ 1325  cd lib/
+ 1326  git submodule init https://github.com/ActivitySim/activitysim.git
+ 1327  git submodule add https://github.com/ActivitySim/activitysim.git
+ 1328  git submodule add https://github.com/ActivitySim/populationsim.git
+ 1329  ll
+ 1330  source /home/jin/miniconda3/bin/activate
+ 1331  conda activate asim
+ 1332  /home/jin/miniconda3/envs/asim/bin/python
+ 1333  cd AVAIL/
+ 1334  ls
+ 1335  cd code
+ 1336  cd activitysim/
+ 1337  ls
+ 1338  cd populationsim/
+ 1339  ls
+ 1340  cd example_calm_albany/
+ 1341  ls
+ 1342  conda activate popsim
+ 1343  python run_populationsim.py 
+ 1344  less run_populationsim.py 
+ 1345  python run_populationsim.py 
+ 1346  less run_populationsim.py 
+ 1347  python run_populationsim.py 
+ 1348  npm start
+ 1349  source /home/jin/miniconda3/bin/activate
+ 1350  conda activate asim
+ 1351  cd server/
+ 1352  node test/sendPopSynthReq.js 
+ 1353  node version
+ 1354  node --version
+ 1355  n
+ 1356  n install 17.5
+ 1357  sudo n install 17.5
+ 1358  sudo n use 17.5
+ 1359  node --version
+ 1360  node test/sendPopSynthReq.js 
+ 1361  node test/sendPopSynthReq.js --experimental-fetch
+ 1362  cd ../
+ 1363  npm i node-fetch --save
+ 1364  npm i node-fetch --save-dev
+ 1365  cd server/
+ 1366  node test/sendPopSynthReq.js 
+ 1367  npm uninstall node-fetch 
+ 1368  npm install node-fetch@2 --save-dev
+ 1369  node test/sendPopSynthReq.js 
+ 1370  cd ..
+ 1371  cd avl-modeler2
+ 1372  cd server/
+ 1373  ls
+ 1374  conda activate asim
+ 1375  history >history3.log
+ 1376  chmod +x envars.sh 
+ 1377  ./envars.sh 
+ 1378  flask run
+ 1379  export FLASK_APP=index
+ 1380  flask run
+ 1381  source /home/jin/miniconda3/bin/activate
+ 1382  conda activate asim
+ 1383  source /home/jin/miniconda3/bin/activate
+ 1384  conda activate asim
+ 1385  source /home/jin/miniconda3/bin/activate
+ 1386  conda activate asim
+ 1387  source /home/jin/miniconda3/bin/activate
+ 1388  conda activate asim
+ 1389  exit
+ 1390  source /home/jin/miniconda3/bin/activate
+ 1391  conda activate asim
+ 1392  source /home/jin/miniconda3/bin/activate
+ 1393  conda activate asim
+ 1394  cd server/
+ 1395  ls
+ 1396  conda acticate asim
+ 1397  conda activate asim
+ 1398  export FLASK_APP=index
+ 1399  flask run
+ 1400  exit
+ 1401  source /home/jin/miniconda3/bin/activate
+ 1402  conda activate asim
+ 1403  deactivate
+ 1404  source deactivate
+ 1405  conda deactivate
+ 1406  source /home/jin/miniconda3/bin/activate
+ 1407  conda activate asim
+ 1408  source /home/jin/miniconda3/bin/activate
+ 1409  conda activate asim
+ 1410  cd server
+ 1411  history>history1.log
+ 1412  source /home/jin/miniconda3/bin/activate
+ 1413  conda activate asim
+ 1414  cd server/
+ 1415  node test/sendPopSynthReq.js 
+ 1416  npm start
+ 1417  git add .
+ 1418  git commit -m 'update dataGenerator'
+ 1419  git pull
+ 1420  git push
+ 1421  npm start
+ 1422  cd server/
+ 1423  conda activate asim
+ 1424  export FLASK_APP=index
+ 1425  flask run
+ 1426  source /home/jin/miniconda3/bin/activate
+ 1427  conda activate asim
+ 1428  npm start
+ 1429  cd server/
+ 1430  ls
+ 1431  export FLASK_APP=index
+ 1432  flask run
+ 1433  conda activate asim
+ 1434  exit
+ 1435  conda activate ASIM_DEV_5
+ 1436  export FLASK_APP=index
+ 1437  flask run
+ 1438  cd server
+ 1439  flask run
+ 1440  conda install flask
+ 1441  flask run
+ 1442  history >history2.log
+ 1443  conda deactivate
+ 1444  conda activate asim
+ 1445  flask run
+ 1446  conda deactivate
+ 1447  ls
+ 1448  export FLASK_APP=index
+ 1449  conda activate asim
+ 1450  export FLASK_APP=index
+ 1451  flask run
+ 1452  cd server
+ 1453  ls
+ 1454  cd lib
+ 1455  cd ..
+ 1456  conda activate ASIM_DEV_7
+ 1457  conda activate ASIM_DEV_6
+ 1458  export FLASK_APP=index
+ 1459  flask run
+ 1460  cd server
+ 1461  ls
+ 1462  export FLASK_APP=index
+ 1463  flask run
+ 1464  export FLASK_APP=index
+ 1465  flask run
+ 1466  conda activate asim
+ 1467  export FLASK_APP=index
+ 1468  flask run
+ 1469  conda deactivate
+ 1470  source /home/jin/miniconda3/bin/activate
+ 1471  conda activate asim
+ 1472  export FLASK_APP=index
+ 1473  flask run
+ 1474  conda deactivate
+ 1475  conda activate ASIM_DEV_6
+ 1476  flask run
+ 1477  conda deactivate
+ 1478  conda activate ASIM_DEV
+ 1479  flask run
+ 1480  export FLASK_APP=index
+ 1481  flask run
+ 1482  exit
+ 1483  source /home/jin/miniconda3/bin/activate
+ 1484  conda activate asim
+ 1485  source /home/jin/miniconda3/bin/activate
+ 1486  conda activate asim
+ 1487  source /home/jin/miniconda3/bin/activate
+ 1488  conda activate asim
+ 1489  conda deactivate
+ 1490  conda decativate
+ 1491  conda deactivate
+ 1492  cd server
+ 1493  ls
+ 1494  conda activate ASIM_DEV_6
+ 1495  conda activate ASIM_DEV
+ 1496  export FLASK_APP=index
+ 1497  flask run
+ 1498  conda decativate
+ 1499  conda deactivate
+ 1500  conda activate ASIM_DEV_6
+ 1501  export FLASK_APP=index
+ 1502  flask run
+ 1503  conda deactivate
+ 1504  conda activate ASIM_DEV
+ 1505  export FLASK_APP=index
+ 1506  flask run
+ 1507  ls
+ 1508  cd lib/populationsim/example_calm
+ 1509  ls
+ 1510  ./run
+ 1511  python run_populationsim.py 
+ 1512  conda --help
+ 1513  conda deactivatre
+ 1514  conda deactivate
+ 1515  ls
+ 1516  cd ../
+ 1517  ls
+ 1518  cd conda/
+ 1519  conda env create --file=activitysim-dev.yml -n ASIM-SERVER
+ 1520  top
+ 1521  ps -l 
+ 1522  source /home/jin/miniconda3/bin/activate
+ 1523  conda activate asim
+ 1524  exit
+ 1525  source /home/jin/miniconda3/bin/activate
+ 1526  conda activate asim
+ 1527  conda deactivate
+ 1528  conda activate ASIM_DEV
+ 1529  cd server/
+ 1530  ls
+ 1531  cd lib/populationsim/
+ 1532  ls
+ 1533  cd example_calm
+ 1534  python run_populationsim.py 
+ 1535  cp -r configs ../../../
+ 1536  cd ../
+ 1537  ls
+ 1538  cp -r lib/populationsim/example_calm/data .
+ 1539  cp -r lib/populationsim/example_calm/output .
+ 1540  ls
+ 1541  cd lib/populationsim/example_calm
+ 1542  ls
+ 1543  python run_populationsim.py 
+ 1544  cd /home/jin/miniconda3/envs/ASIM_DEV/lib/python3.9/site-packages/populationsim-0.5.1-py3.9.egg/populationsim/
+ 1545  cd /home/jin/miniconda3/envs/ASIM_DEV/lib/python3.9/site-packages/
+ 1546  ls
+ 1547  cd ls
+ 1548  exit
+ 1549  source /home/jin/miniconda3/bin/activate
+ 1550  conda activate asim
+ 1551  conda deactivate
+ 1552  ls
+ 1553  conda deactivate
+ 1554  ls
+ 1555  cd server/test/
+ 1556  ls
+ 1557  node sendPopSynthReq.js 
+ 1558  ls
+ 1559  cd ../
+ 1560  cd lib/populationsim/\
+ 1561  ls
+ 1562  cd lib/
+ 1563  cd populationsim/
+ 1564  ls
+ 1565  python setup.py uninstall
+ 1566  python setup.py remove
+ 1567  cd /home/jin/miniconda3/envs/ASIM_DEV/lib/python3.9/site-packages/
+ 1568  rm -rf populationsim-0.5.1-py3.9.egg 
+ 1569  less easy-install.pth 
+ 1570  nano easy-install.pth 
+ 1571  ~/AVAIL/code/avl-modeler2/server/lib/populationsim
+ 1572  cd ~/AVAIL/code/avl-modeler2/server/lib/
+ 1573  ls
+ 1574  cd populationsim/
+ 1575  pip install .
+ 1576  python setup.py install --single-version-externally-managed --root=/
+ 1577  sudo python setup.py install --single-version-externally-managed --root=/
+ 1578  sudo python3. setup.py install --single-version-externally-managed --root=/populationsim
+ 1579  conda activate ASIM_DEV
+ 1580  python setup.py install --single-version-externally-managed --root=/
+ 1581  cd ../
+ 1582  ls
+ 1583  cd test/
+ 1584  ls
+ 1585  node sendPopSynthReq.js 
+ 1586  cd ../
+ 1587  ls
+ 1588  cd lib/populationsim/example_calm
+ 1589  ls
+ 1590  python run_populationsim.py 
+ 1591  source /home/jin/miniconda3/bin/activate
+ 1592  conda activate asim
+ 1593  conda deactivate
+ 1594  conda activate ASIM_DEV
+ 1595  cd server
+ 1596  cd popsynth_runs/
+ 1597  cd HXB6MH/
+ 1598  python run_populationsim.py 
+ 1599  cd ..
+ 1600  cd TUXCMK/
+ 1601  python run_populationsim.py 
+ 1602  cd ..
+ 1603  cd DVWR2J/
+ 1604  python run_populationsim.py 
+ 1605  cd ..
+ 1606  cd 4SPUMW/
+ 1607  python run_populationsim.py 
+ 1608  cd ..
+ 1609  cd EJWC2A/
+ 1610  python run_populationsim.py 
+ 1611  cd ..
+ 1612  cd G7GGPK/
+ 1613  python run_populationsim.py 
+ 1614  source /home/jin/miniconda3/bin/activate
+ 1615  conda activate asim
+ 1616  npms start
+ 1617  npm start
+ 1618  source /home/jin/miniconda3/bin/activate
+ 1619  conda activate asim
+ 1620  conda deactivate
+ 1621  npm start
+ 1622  cd server/
+ 1623  cd test/
+ 1624  ls
+ 1625  cd ..
+ 1626  cd lib/
+ 1627  cd activitysim_1
+ 1628  conda env create --file=conda-environments/activitysim-dev.yml --name ASIM_DEV_6
+ 1629  cd ..
+ 1630  cd activitysim
+ 1631  conda env create --file=../conda/activitysim-dev.yml --name ASIM_DEV_7
+ 1632  conda env create --file=../../conda/activitysim-dev.yml --name ASIM_DEV_7
+ 1633  conda env create --file=conda-environments/activitysim-dev.yml --name ASIM_DEV_7
+ 1634  conda env create --file=conda-environments/activitysim-dev.yml --name ASIM_DEV
+ 1635  export FLASK_APP=index
+ 1636  cd ../
+ 1637  ls
+ 1638  cd test/
+ 1639  ls
+ 1640  node sendPopSynthReq.js 
+ 1641  conda activate asim
+ 1642  cd ..
+ 1643  cd..
+ 1644  cd ..
+ 1645  cd..
+ 1646  cd ..
+ 1647  globalprotect connect --portal uavpn.albany.edu
+ 1648  cd AVAIL/code/
+ 1649  cd avl-modeler2
+ 1650  cd ser
+ 1651  cd server/
+ 1652  ls
+ 1653  conda activate asim
+ 1654  export FLASK_APP=index
+ 1655  flask run
+ 1656  conda deactivate
+ 1657  cd ..
+ 1658  cd activity
+ 1659  cd activitysim/
+ 1660  cd populationsim/
+ 1661  cd example-calm
+ 1662  ls
+ 1663  cd example_calm
+ 1664  python run_populationsim.py 
+ 1665  conda activate popsim
+ 1666  python run_populationsim.py 
+ 1667  cd ..
+ 1668  cd example_calm_albany/
+ 1669  python run_populationsim.py 
+ 1670  cd ..
+ 1671  cd example_calm
+ 1672  cd ..
+ 1673  cd example_calm_albany/
+ 1674  python run_populationsim.py 
+ 1675  cd ..
+ 1676  cd example_calm
+ 1677  python run_populationsim.py 
+ 1678  globalprotect connect --portal uavpn.albany.edu
+ 1679  source /home/jin/miniconda3/bin/activate
+ 1680  conda activate asim
+ 1681  source /home/jin/miniconda3/bin/activate
+ 1682  conda activate asim
+ 1683  source /home/jin/miniconda3/bin/activate
+ 1684  conda activate asim
+ 1685  source /home/jin/miniconda3/bin/activate
+ 1686  conda activate asim
+ 1687  deactivate asim
+ 1688  conda deactivate
+ 1689  cd server
+ 1690  ls
+ 1691  ll
+ 1692  ls
+ 1693  ll
+ 1694  ex[ort FLASK_APP=index
+ 1695  export FLASK_APP=index
+ 1696  flask run
+ 1697  conda activate ASIM_DEV
+ 1698  export FLASK_APP=index
+ 1699  flask run
+ 1700  source /home/jin/miniconda3/bin/activate
+ 1701  conda activate asim
+ 1702  deactivate asim
+ 1703  conda deactivate asim
+ 1704  deactivate base
+ 1705  conda deactivate base
+ 1706  conda deactivate
+ 1707  npm start
+ 1708  source /home/jin/miniconda3/bin/activate
+ 1709  conda activate asim
+ 1710  conda deactivate
+ 1711  cd server
+ 1712  ls
+ 1713  export FLASK_APP=index
+ 1714  flask run
+ 1715  activate ASIM_DEV
+ 1716  conda activate ASIM_DEV
+ 1717  export FLASK_APP=index
+ 1718  flask run
+ 1719  npm start
+ 1720  cd AVAIL/
+ 1721  cd code
+ 1722  ls
+ 1723  git clone https://github.com/availabs/availblog.git
+ 1724  globalprotect connect --portal uavpn.albany.edu
+ 1725  source /home/jin/miniconda3/bin/activate
+ 1726  conda activate asim
+ 1727  conda deactivate
+ 1728  source /home/jin/miniconda3/bin/activate
+ 1729  conda activate asim
+ 1730  conda deactivate
+ 1731  conda activate ASIM_DEV
+ 1732  conda list
+ 1733  from redis import Redis
+ 1734  cd server
+ 1735  ls
+ 1736  bash popsynthrun.sh 
+ 1737  source /home/jin/miniconda3/bin/activate
+ 1738  conda activate asim
+ 1739  conda deactivate
+ 1740  npm start
+ 1741  source /home/jin/miniconda3/bin/activate
+ 1742  conda activate asim
+ 1743  conda deactivate
+ 1744  cd server
+ 1745  conda activate ASIM_DEV
+ 1746  export FLASK_APP=index
+ 1747  flask run
+ 1748  cd server
+ 1749  history > history1.log
+ 1750  export FLASK_APP=index
+ 1751  activate ASIM_DEV
+ 1752  conda activate ASIM_DEV
+ 1753  export FLASK_APP=index
+ 1754  flask run
+ 1755  rq woker synpoprun-test1
+ 1756  rq worker synpoprun-test1
+ 1757  source /home/jin/miniconda3/bin/activate
+ 1758  conda activate asim
+ 1759  exit source
+ 1760  source /home/jin/miniconda3/bin/activate
+ 1761  conda activate asim
+ 1762  exit source
+ 1763  source /home/jin/miniconda3/bin/activate
+ 1764  conda activate asim
+ 1765  source /home/jin/miniconda3/bin/activate
+ 1766  conda activate asim
+ 1767  source /home/jin/miniconda3/bin/activate
+ 1768  conda activate asim
+ 1769  conda config --set auto_activate_base False
+ 1770  source /home/jin/miniconda3/bin/activate
+ 1771  conda activate ASIM_DEV
+ 1772  source /home/jin/miniconda3/bin/activate
+ 1773  conda activate ASIM_DEV
+ 1774  conda config --set auto_activate_base False
+ 1775  source /home/jin/miniconda3/bin/activate
+ 1776  conda activate ASIM_DEV
+ 1777  source /home/jin/miniconda3/bin/activate
+ 1778  conda activate ASIM_DEV
+ 1779  export FLASK_APP=index
+ 1780  flask run
+ 1781  cd server
+ 1782  export FLASK_APP=index
+ 1783  flask run
+ 1784  source /home/jin/miniconda3/bin/activate
+ 1785  conda activate asim
+ 1786  conda deactivate
+ 1787  conda config --set auto_activate_base False
+ 1788  conda activate ASIM_DEV
+ 1789  cd server
+ 1790  rq worker synpoprun-test1
+ 1791  flask run
+ 1792  rq worker synpoprun-test1
+ 1793  rq worker synpoprun-test2
+ 1794  rq worker synpoprun-test1
+ 1795  rq worker synpoprun-test2
+ 1796  rq worker synpoprun-test3
+ 1797  rq worker synpoprun-test4
+ 1798  rq worker synpop-test
+ 1799  rq worker test
+ 1800  rq worker snyPopTest
+ 1801  rq worker popSynth_test
+ 1802  rq worker popSynth_test1
+ 1803  rq worker popSynth_test2
+ 1804  rq worker popSynth_test3
+ 1805  rq worker popSynth_test3
+ 1806  rq worker popSynth_test4
+ 1807  rq worker popSynth_test5
+ 1808  rq worker popSynth_test6
+ 1809  cd server
+ 1810  conda activate ASIM_DEV
+ 1811  export FLASK_APP=index
+ 1812  flask run
+ 1813  conda deactivate
+ 1814  conda activate ASIM_DEV
+ 1815  export FLASK_APP=index
+ 1816  flask run
+ 1817  source /home/jin/miniconda3/bin/activate
+ 1818  conda activate ASIM_DEV
+ 1819  conda deactivate
+ 1820  npm start
+ 1821  globalprotect connect --portal uavpn.albany.edu
+ 1822  npm start
+ 1823  globalprotect connect --portal uavpn.albany.edu
+ 1824  npm start
+ 1825  cd server
+ 1826  activate ASIM_DEV
+ 1827  conda activate ASIM_DEV
+ 1828  history>history2.log
+ 1829  rq worker popSynth_test7
+ 1830  rq worker popSynth_test5
+ 1831  rq worker popSynth_test6
+ 1832  rq worker popSynth_test7
+ 1833  rq worker popSynth_test8
+ 1834  rq worker popSynth_test9
+ 1835  sudo service --status-all
+ 1836  rq worker popSynth_test9
+ 1837  cd server
+ 1838  conda activate ASIM_DEV
+ 1839  export FLASK_APP=index
+ 1840  flask run
+ 1841  cd server
+ 1842  conda activate ASIM_DEV
+ 1843  rq worker popSynth_run
+ 1844  cd server
+ 1845  export FLASK_APP=index
+ 1846  flask run
+ 1847  conda activate ASIM_DEV
+ 1848  export FLASK_APP=index
+ 1849  flask run
+ 1850  globalprotect connect --portal uavpn.albany.edu
+ 1851  conda activate ASIM_DEV
+ 1852  export FLASK_APP=index
+ 1853  cd server
+ 1854  flask run
+ 1855  cd server
+ 1856  conda activate ASIM_DEV
+ 1857  rq worker popSynth_run
+ 1858  npm start
+ 1859  cd server
+ 1860  rq worker popSynth_run
+ 1861  conda activate ASIM_DEV
+ 1862  rq worker popSynth_run
+ 1863  conda activate ASIM_DEV
+ 1864  export FLASK_APP=index
+ 1865  cd server
+ 1866  export FLASK_APP=index
+ 1867  flask run
+ 1868  globalprotect connect --portal uavpn.albany.edu
+ 1869  conda activate ASIM_DEV
+ 1870  cd server
+ 1871  export FLASK_APP=index
+ 1872  flask run
+ 1873  /home/jin/miniconda3/envs/ASIM_DEV/bin/python
+ 1874  conda activate ASIM_DEV
+ 1875  export FLASK_APP=index
+ 1876  cd server/
+ 1877  export FLASK_APP=index
+ 1878  flask run
+ 1879  export FLASK_APP=index
+ 1880  flask run
+ 1881  conda activate ASIM_DEV
+ 1882  cd server
+ 1883  rq worker popSynth_test9
+ 1884  sudo apt install nomacs
+ 1885  globalprotect connect --portal uavpn.albany.edu
+ 1886  npm start
+ 1887  ls
+ 1888  cd src/modules/avl-components/
+ 1889  git pull
+ 1890  git status
+ 1891  git checkout master
+ 1892  git pull
+ 1893  cd server
+ 1894  cd server/
+ 1895  conda activate ASIM_DEV
+ 1896  rq worker popSynth_test9
+ 1897  cd server
+ 1898  export FLASK_APP=index
+ 1899  conda activate ASIM_DEV
+ 1900  export FLASK_APP=index
+ 1901  flask run
+ 1902  globalprotect connect --portal uavpn.albany.edu
+ 1903  cd server
+ 1904  conda activate ASIM_DEV
+ 1905  export FLASK_APP=index
+ 1906  flask run
+ 1907  cd server
+ 1908  conda activate ASIM_DEV
+ 1909  rq worker popSynth_test9
+ 1910  npm start
+ 1911  npm run
+ 1912  npm run build
+ 1913  npm run
+ 1914  cd ser er
+ 1915  cd serer
+ 1916  cd server
+ 1917  conda activate ASIM_DEV
+ 1918  rq worker popSynth_test9
+ 1919  cd server
+ 1920  conda activate ASIM_DEV
+ 1921  export FLASK_APP=index
+ 1922  flask run
+ 1923  globalprotect connect --portal uavpn.albany.edu
+ 1924  cd AVAIL/code
+ 1925  git clone https://github.com/latsic/imgalign.git
+ 1926  globalprotect connect --portal uavpn.albany.edu
+ 1927  conda activate ASIM_DEV
+ 1928  cd server
+ 1929  rq worker popSynth_test9
+ 1930  npm start
+ 1931  conda activate ASIM_DEV
+ 1932  cd server
+ 1933  export FLASK_APP=index
+ 1934  flask run
+ 1935  globalprotect connect --portal uavpn.albany.edu
+ 1936  npm start
+ 1937  export NODE_OPTIONS=--openssl-legacy-provider
+ 1938  npm start
+ 1939  cd server
+ 1940  conda activate ASIM_DEV
+ 1941  rq worker popSynth_test9
+ 1942  conda activate ASIM_DEV
+ 1943  export FLASK_APP=index
+ 1944  flask run
+ 1945  cd server
+ 1946  export FLASK_APP=index
+ 1947  flask run
+ 1948  globalprotect connect --portal uavpn.albany.edu
+ 1949  cd server
+ 1950  conda activate ASIM_DEV
+ 1951  rq worker popSynth_test9
+ 1952  cd server
+ 1953  conda activate ASIM_DEV
+ 1954  export FLASK_APP=index
+ 1955  flask run
+ 1956  npm start
+ 1957  export NODE_OPTIONS=--openssl-legacy-provider
+ 1958  npm start
+ 1959  /home/jin/miniconda3/envs/ASIM_DEV/bin/python
+ 1960  cd server
+ 1961  conda activate ASIM_DEV
+ 1962  rq worker popSynth_test9
+ 1963  git add .
+ 1964  git commit 'delete button'
+ 1965  git commit -m 'delete button and init view page'
+ 1966  git pull
+ 1967  git push
+ 1968  npm start
+ 1969  cd server
+ 1970  conda activate ASIM_DEV
+ 1971  export FLASK_APP=index
+ 1972  flask run
+ 1973  sudo add-apt-repository ppa:inkscape.dev/stable
+ 1974  sudo apt update
+ 1975  sudo apt install inkscape
+ 1976  cd AVAIL/
+ 1977  ls
+ 1978  cd ..
+ 1979  cd downloads
+ 1980  ls
+ 1981  cd Downloads/
+ 1982  ls
+ 1983  chmod a+x Inkscape- Inkscape-9c6d41e-x86_64.AppImage
+ 1984  chmod a+x Inkscape-9c6d41e-x86_64.AppImage
+ 1985  ./ Inkscape-9c6d41e-x86_64.AppImage
+ 1986  ./Inkscape-9c6d41e-x86_64.AppImage
+ 1987  cd ..
+ 1988  ./Inkscape-9c6d41e-x86_64.AppImage
+ 1989  export NODE_OPTIONS=--openssl-legacy-provider
+ 1990  npm start
+ 1991  globalprotect connect --portal uavpn.albany.edu
+ 1992  conda activate ASIM_DEV
+ 1993  npm install d3
+ 1994  history> log_111822.log
+ 1995  rq worker popSynth_test9
+ 1996  cd server 
+ 1997  conda activate ASIM_DEV
+ 1998  rq worker popSynth_test9
+ 1999  npm start
+ 2000  git add .
+ 2001  git commit -m "fix bg type error"
+ 2002  git pull
+ 2003  git push
+ 2004  git status
+ 2005  git remote -v
+ 2006  git branch
+ 2007  q
+ 2008  git log
+ 2009  git status
+ 2010  ls -a
+ 2011  history > log_asof112022
