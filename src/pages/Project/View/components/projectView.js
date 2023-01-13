@@ -26,6 +26,8 @@ const ProjectView = ({ projectId, selectedBlockGroups, layer }) => {
       });
   }, [projectId]);
 
+  console.log("varList--", varList);
+
   useEffect(() => {
     fetch(`http://localhost:5000/project/${projectId}/view`)
       .then((response) => response.json())

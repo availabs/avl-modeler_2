@@ -32,9 +32,11 @@ const Dropdown = ({ varList, projectId, selectedBlockGroups }) => {
         <select onChange={handleChange}>
           <option key={0} value={""}></option>
           {varList.map((k, i) => {
+            // console.log("meta K ", k.slice(2), metaVariables[k.slice(2)].name)
+            let selectedVarName = metaVariables[k.slice(2)].name;
             return (
               <option key={i} value={k}>
-                {k}
+                {selectedVarName}
               </option>
             );
           })}

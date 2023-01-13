@@ -21,36 +21,50 @@ const Charts = ({
   );
 
   let [selectedVarData, setSelectedVarData] = useState([]);
-  let [selectedBGs, setSelectedBGs] = useState([]);
+  let [totalVarData, setTotalVarData] = useState([]);
 
   let selectedVar = selectedValue[0]?.slice(2);
 
+  // reformat selectedVarDat [{total:, selected:,GEOID: }, ...]
   useMemo(() => {
     // if (selectedValue) {
     fetch(`http://localhost:5000/project/${projectId}/${selectedValue}`)
       .then((response) => response.json())
       .then((data) => {
-        if (selectedBlockGroups.length == 0) {
+        if (selectedBlockGroups.length === 0) {
           console.log("selected data--", data[0]);
           setSelectedVarData(data);
+          setTotalVarData(data);
         } else {
           // let newData = selectedBlockGroups.map((bg) =>
           //   data.filter((e) => e.BG == bg.slice(5))
           // );
 
-          let gData = d3.group(data, (d) => d.BG);
-          let newData = selectedBlockGroups.map((bg) => {
+          // let gData = d3.group(data, (d) => d.BG);
+          // let newData = selectedBlockGroups.map((bg) => {
+          //   console.log(
+          //     "blockgroupIDs",
+          //     bg.slice(5),
+          //     bg.slice(5).replace(/^0+/, ""),
+          //     parseInt(bg.slice(5)).toString()
+
+          //   );
+
+          //   return gData.get(bg.slice(5).replace(/^0+/, ""))
+          //     ? gData.get(bg.slice(5).replace(/^0+/, ""))
+          //     : [];
+
+          let gData = d3.group(data, (d) => d.GEOID);
+          let newData = selectedBlockGroups.map((GEOID) => {
             console.log(
               "blockgroupIDs",
-              bg.slice(5),
-              bg.slice(5).replace(/^0+/, ""),
-              parseInt(bg.slice(5)).toString()
+              GEOID,
+              GEOID.slice(5),
+              GEOID.slice(5).replace(/^0+/, ""),
+              parseInt(GEOID.slice(5)).toString()
             );
 
-            return gData.get(bg.slice(5).replace(/^0+/, ""))
-              ? gData.get(bg.slice(5).replace(/^0+/, ""))
-              : [];
-            // return gData.get(bg.slice(5)) ? gData.get(bg.slice(5)) : [];
+            return gData.get(GEOID) ? gData.get(GEOID) : [];
           });
 
           // let dataNew = data.map((d) => d.BG);
@@ -102,8 +116,7 @@ const Charts = ({
   console.log(
     "chart_states after useMemo--------------",
     selectedVar,
-    selectedVarData,
-    selectedBGs
+    selectedVarData
   );
 
   let chartData = useMemo(() => {
@@ -133,7 +146,8 @@ const Charts = ({
           bins.map(() => 0)
         )
         .map((d, i) => {
-          return { bin: selectedBins[i].name, [selectedVar]: d };
+          // return { bin: selectedBins[i].name, [selectedVar]: d};
+          return { bin: selectedBins[i].name, Selected: d, Total: 18858 };
         });
 
       //console.timeEnd("evval bins");
@@ -146,9 +160,9 @@ const Charts = ({
 
   return (
     <div>
-      <div> charts data test: {selectedVarData.length} </div>
+      <div> Total Selected: {selectedVarData.length} </div>
       <div style={{ height: 400 }}>
-        <BarChart keys={[selectedVar]} data={chartData} />
+        <BarChart keys={["Selected", "Total"]} data={chartData} />
       </div>
     </div>
   );
