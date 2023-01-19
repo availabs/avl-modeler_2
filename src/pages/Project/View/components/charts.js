@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect, useMemo } from "react";
 import * as d3 from "d3";
 // import { ResponsiveBar } from "@nivo/bar";
 import BarChart from "./barChart";
+import { Select } from "react-select";
 
 const Charts = ({
   metaVariables,
@@ -9,8 +10,6 @@ const Charts = ({
   projectId,
   selectedBlockGroups,
 }) => {
-  //  chart data processing here
-
   console.log(
     "charts_props---------",
     metaVariables,
@@ -20,149 +19,91 @@ const Charts = ({
     selectedBlockGroups
   );
 
-  let [selectedVarData, setSelectedVarData] = useState([]);
   let [totalVarData, setTotalVarData] = useState([]);
 
   let selectedVar = selectedValue[0]?.slice(2);
 
   // reformat selectedVarDat [{total:, selected:,GEOID: }, ...]
-  useMemo(() => {
+  useEffect(() => {
     // if (selectedValue) {
     fetch(`http://localhost:5000/project/${projectId}/${selectedValue}`)
       .then((response) => response.json())
       .then((data) => {
-        if (selectedBlockGroups.length === 0) {
-          console.log("selected data--", data[0]);
-          setSelectedVarData(data);
-          setTotalVarData(data);
-        } else {
-          // let newData = selectedBlockGroups.map((bg) =>
-          //   data.filter((e) => e.BG == bg.slice(5))
-          // );
-
-          // let gData = d3.group(data, (d) => d.BG);
-          // let newData = selectedBlockGroups.map((bg) => {
-          //   console.log(
-          //     "blockgroupIDs",
-          //     bg.slice(5),
-          //     bg.slice(5).replace(/^0+/, ""),
-          //     parseInt(bg.slice(5)).toString()
-
-          //   );
-
-          //   return gData.get(bg.slice(5).replace(/^0+/, ""))
-          //     ? gData.get(bg.slice(5).replace(/^0+/, ""))
-          //     : [];
-
-          let gData = d3.group(data, (d) => d.GEOID);
-          let newData = selectedBlockGroups.map((GEOID) => {
-            console.log(
-              "blockgroupIDs",
-              GEOID,
-              GEOID.slice(5),
-              GEOID.slice(5).replace(/^0+/, ""),
-              parseInt(GEOID.slice(5)).toString()
-            );
-
-            return gData.get(GEOID) ? gData.get(GEOID) : [];
-          });
-
-          // let dataNew = data.map((d) => d.BG);
-          // const newData = selectedBlockGroups.some((bg) =>
-          //   dataNew.includes(bg)
-          // );
-          setSelectedVarData(newData.flat());
-
-          console.log("newData", gData, newData, newData.flat());
-        }
+        console.log("TotalVar data fetched--", data[0], data);
+        // setSelectedVarData(data);
+        setTotalVarData(data);
       });
     // }
-  }, [selectedValue, selectedBlockGroups]);
+  }, [selectedValue, projectId]);
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/project/${projectId}/${selectedValue}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (selectedBlockGroups.length == 0) {
-  //         setSelectedVarData(data);
-
-  //         console.log("selected data useEffect", data[0]);
-  //       }
-  //     });
-  // }, [selectedValue]);
-
-  // useMemo(() => {
-  //   if (selectedValue && selectedBlockGroups.length > 0) {
-  //     setSelectedBGs = selectedBlockGroups;
-
-  //     console.log("selected data useMemo", selectedVarData);
-
-  //     let newData = selectedBlockGroups.map((bg) =>
-  //       selectedVarData.filter((e) => e.BG == bg.slice(5))
-  //     );
-
-  //     // let dataNew = data.map((d) => d.BG);
-
-  //     // const newData = selectedBlockGroups.some((bg) =>
-  //     //   dataNew.includes(bg)
-  //     // );
-
-  //     setSelectedVarData(newData.flat(2));
-
-  //     console.log("newData", newData, newData.flat(2), newData.flat());
-  //   }
-  // }, [selectedBlockGroups]);
-
-  console.log(
-    "chart_states after useMemo--------------",
-    selectedVar,
-    selectedVarData
-  );
+  console.log("chart_states--------------", selectedVar, totalVarData);
 
   let chartData = useMemo(() => {
-    //console.log("updateCharData", selectedVar, selectedVarData[0]);
+    //console.log("updateCharData", selectedVar, totalVarData[0]);
 
     if (selectedValue) {
       let selectedBins = metaVariables[selectedVar].binsCompare;
 
       const bins = selectedBins.map((d) => Function("v", d.comp));
       // setSelectedVar = selectedValue[0]?.slice(2);
-      console.log("bins---------", bins);
+      //console.log("bins---------", bins, selectedBins);
 
       // console.time("evval bins");
-      return selectedVarData
+      return totalVarData
         .reduce(
           (a, c) => {
             const value = parseInt(c[selectedVar]) || 0;
 
             for (let i = 0; i < bins.length; i++) {
+              //counting 1 if values meet the condition
               if (bins[i](value)) {
-                a[i] += +1;
+                a[i].total += 1;
+                if (selectedBlockGroups.includes(c.GEOID)) {
+                  a[i].selected += 1;
+                }
                 break;
               }
             }
             return a;
           },
-          bins.map(() => 0)
+          bins.map(() => {
+            return { selected: 0, total: 0 };
+          })
         )
         .map((d, i) => {
-          // return { bin: selectedBins[i].name, [selectedVar]: d};
-          return { bin: selectedBins[i].name, Selected: d, Total: 18858 };
+          console.log("d-------------", d);
+
+          return {
+            bin: selectedBins[i].name,
+            Selected: d.selected,
+            Total: d.total,
+          };
         });
 
       //console.timeEnd("evval bins");
 
       // return { bin: bin.name, [selectedVar]: binValue };
     }
-  }, [selectedVarData, selectedBlockGroups]);
+  }, [totalVarData, selectedBlockGroups]);
+
+  // chartData ?? 0;
+
+  // let totalSelectedVarData = chartData.map((d) => d.Selected) || 0;
+
+  let totalSelectedVarData = 0;
+
+  if (chartData) {
+    totalSelectedVarData = chartData.reduce((a, c) => a + c.Selected, 0);
+  }
 
   console.log("finalChartData", chartData);
 
   return (
     <div>
-      <div> Total Selected: {selectedVarData.length} </div>
+      <div> Total Selected BGs: {selectedBlockGroups.length} </div>
+      <div> Total Selected: {totalSelectedVarData} </div>
       <div style={{ height: 400 }}>
-        <BarChart keys={["Selected", "Total"]} data={chartData} />
+        <BarChart keys={["Total", "Selected"]} data={chartData} />
       </div>
     </div>
   );
