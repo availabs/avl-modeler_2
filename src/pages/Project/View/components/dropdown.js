@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import get from "lodash.get";
 
 import Charts from "./charts";
 
@@ -9,6 +10,8 @@ const Dropdown = ({ varList, projectId, selectedBlockGroups }) => {
 
   const handleChange = (e) => {
     if (e.target.value) {
+      console.log("e.target.value-------", e.target.value);
+
       setSelectedValue([e.target.value]);
     }
   };
@@ -17,7 +20,7 @@ const Dropdown = ({ varList, projectId, selectedBlockGroups }) => {
     const getVariables = async () => {
       const response = await fetch("/data/model_variables.json");
       const data = await response.json();
-      // console.log("metaData--", data);
+      console.log("metaData--", data);
 
       setMetaVariables(data);
     };
@@ -31,12 +34,17 @@ const Dropdown = ({ varList, projectId, selectedBlockGroups }) => {
 
         <select onChange={handleChange}>
           <option key={0} value={""}></option>
-          {varList.map((k, i) => {
-            // console.log("meta K ", k.slice(2), metaVariables[k.slice(2)].name)
-            let selectedVarName = metaVariables[k.slice(2)].name;
+          {Object.keys(metaVariables).map((k, i) => {
+            let varSelected = varList.filter((v) => v.slice(2) === k);
+
+            console.log("varSelected----", varSelected);
+
+            // let selectedVarName = get(metaVariables, `[${k}].name`, "");  // how to do with loadash get
+
             return (
-              <option key={i} value={k}>
-                {selectedVarName}
+              <option key={i} value={varSelected}>
+                {/* {k} */}
+                {metaVariables[k].name}
               </option>
             );
           })}

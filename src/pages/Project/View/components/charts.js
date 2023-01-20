@@ -1,8 +1,5 @@
 import React, { Component, useState, useEffect, useMemo } from "react";
-import * as d3 from "d3";
-// import { ResponsiveBar } from "@nivo/bar";
 import BarChart from "./barChart";
-import { Select } from "react-select";
 
 const Charts = ({
   metaVariables,
@@ -22,6 +19,7 @@ const Charts = ({
   let [totalVarData, setTotalVarData] = useState([]);
 
   let selectedVar = selectedValue[0]?.slice(2);
+  // let selectedVar = selectedValue;
 
   // reformat selectedVarDat [{total:, selected:,GEOID: }, ...]
   useEffect(() => {
@@ -71,7 +69,7 @@ const Charts = ({
           })
         )
         .map((d, i) => {
-          console.log("d-------------", d);
+          // console.log("d-------------", d);
 
           return {
             bin: selectedBins[i].name,
@@ -86,12 +84,7 @@ const Charts = ({
     }
   }, [totalVarData, selectedBlockGroups]);
 
-  // chartData ?? 0;
-
-  // let totalSelectedVarData = chartData.map((d) => d.Selected) || 0;
-
   let totalSelectedVarData = 0;
-
   if (chartData) {
     totalSelectedVarData = chartData.reduce((a, c) => a + c.Selected, 0);
   }
@@ -101,7 +94,7 @@ const Charts = ({
   return (
     <div>
       <div> Total Selected BGs: {selectedBlockGroups.length} </div>
-      <div> Total Selected: {totalSelectedVarData} </div>
+      <div> Total Selected value: {totalSelectedVarData} </div>
       <div style={{ height: 400 }}>
         <BarChart keys={["Total", "Selected"]} data={chartData} />
       </div>
