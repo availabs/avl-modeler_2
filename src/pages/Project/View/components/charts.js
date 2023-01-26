@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect, useMemo } from "react";
 import BarChart from "./barChart";
+import get from "lodash.get";
 
 const Charts = ({
   metaVariables,
@@ -91,10 +92,21 @@ const Charts = ({
 
   console.log("finalChartData", chartData);
 
+  let selectedVarName = get(metaVariables, `[${selectedVar}].name`, "");
+
+  // let selectedVarName = metaVariables[selectedVar].name
+  //   ? metaVariables[selectedVar].name
+  //   : "";
+
   return (
     <div>
-      <div> Total Selected BGs: {selectedBlockGroups.length} </div>
-      <div> Total Selected value: {totalSelectedVarData} </div>
+      <div className="mt-1 text-gray-900 text-sm font-medium">
+        {" "}
+        Total Selected BGs: {selectedBlockGroups.length}{" "}
+      </div>
+      <div className="mt-1 text-gray-900 text-sm font-medium">
+        Total Selected value of {selectedVarName}: {totalSelectedVarData}{" "}
+      </div>
       <div style={{ height: 400 }}>
         <BarChart keys={["Total", "Selected"]} data={chartData} />
       </div>

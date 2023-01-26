@@ -82,24 +82,6 @@ def statusByProject(projectId):
     return jsonify(status)
 
 
-@app.route('/project/<projectId>/view')
-def viewByProjectId(projectId):
-    conn = get_db_connection()
-
-    hhsql = "SELECT * FROM project_"+projectId+"_households"
-    psql = "SELECT * FROM project_"+projectId+"_persons"
-
-    households = conn.execute(
-        hhsql).fetchall()
-    persons = conn.execute(
-        psql).fetchall()
-    print("synpop households and persons",
-          households[0].values(), persons[0].values())
-
-    return jsonify({"projectID": projectId, "Households": households, "Persons": persons})
-    # return jsonify({ "projectID": projectId,"totalHouseholds": households[0]["COUNT(1)"], "totalPersons": persons[0]["COUNT(1)"]})
-
-
 @app.route('/project/<projectId>/list_vars')
 def viewVarsByProjectId(projectId):
     conn = get_db_connection()
@@ -211,18 +193,35 @@ def SynPopDataBySelectedBgs(projectId, selectedVar, segment):
 def countsByProjectId(projectId):
     conn = get_db_connection()
 
-    hhsql = "SELECT COUNT(1) FROM project_"+projectId+"_households"
-    psql = "SELECT COUNT(1) FROM project_"+projectId+"_persons"
+    hhsql = "SELECT COUNT(1) as num_hh FROM project_"+projectId+"_households"
+    psql = "SELECT COUNT(1) as num_p FROM project_"+projectId+"_persons"
 
     households = conn.execute(
         hhsql).fetchall()
     persons = conn.execute(
         psql).fetchall()
     print("total households and persons",
+          households[0].values(), persons[0].values(), households[0]["num_hh"], persons[0]["num_p"], households, persons)
+
+    # return jsonify({"projectID": projectId, "Households": households[0].values()[0].num_hh, "Persons": persons})
+    return jsonify({"projectID": projectId, "Households": households[0]["num_hh"], "Persons": persons[0]["num_p"]})
+
+
+@app.route('/project/<projectId>/view')
+def viewByProjectId(projectId):
+    conn = get_db_connection()
+
+    hhsql = "SELECT * FROM project_"+projectId+"_households"
+    psql = "SELECT * FROM project_"+projectId+"_persons"
+
+    households = conn.execute(
+        hhsql).fetchall()
+    persons = conn.execute(
+        psql).fetchall()
+    print("synpop households and persons",
           households[0].values(), persons[0].values())
 
-    return jsonify({"projectID": projectId, "totalHouseholds": households, "totalPersons": persons})
-    # return jsonify({ "projectID": projectId,"totalHouseholds": households[0]["COUNT(1)"], "totalPersons": persons[0]["COUNT(1)"]})
+    return jsonify({"projectID": projectId, "Households": households, "Persons": persons})
 
 
 @app.route('/project/<projectId>/delete')

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import BarChart from "./barCharts";
 import VarSelector from "./varSelector";
 import Dropdown from "./dropdown";
+import get from "lodash.get";
 
 const ProjectView = ({ projectId, selectedBlockGroups, layer }) => {
   // console.log("projectview render");
@@ -14,6 +15,12 @@ const ProjectView = ({ projectId, selectedBlockGroups, layer }) => {
   };
 
   let [projectData, setProjectData] = useState({ Households: [], Persons: [] });
+
+  let [overviewProject, setOverviewProject] = useState({
+    Households: 0,
+    Persons: 0,
+  });
+
   let [varList, setVarList] = useState([]);
 
   useEffect(() => {
@@ -28,17 +35,59 @@ const ProjectView = ({ projectId, selectedBlockGroups, layer }) => {
 
   console.log("varList--", varList);
 
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/project/${projectId}/view`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data !== null) {
+  //         console.log("view data--------------------", data);
+  //         setProjectData({
+  //           ...data,
+  //         });
+  //       }
+  //     });
+  // }, [projectId]);
+
   useEffect(() => {
-    fetch(`http://localhost:5000/project/${projectId}/view`)
+    fetch(`http://localhost:5000/project/${projectId}/overview`)
       .then((response) => response.json())
       .then((data) => {
         if (data !== null) {
-          setProjectData({
+          console.log("overview data--------------------", data);
+          setOverviewProject({
             ...data,
           });
         }
       });
   }, [projectId]);
+  console.log(
+    "overviewProject--",
+    overviewProject
+    // projectData
+    // overviewProject.Households["num_hh"]
+    // overviewProject.totalHouseholds[0]
+    // overviewProject.totalPersons[0]["COUNT(1)"]
+    // Object.values(overviewProject.totalHouseholds[0])[0]
+  );
+
+  // const totalHHCounts = Object.values(overviewProject.totalHouseholds[0])[0]
+  //   ? Object.values(overviewProject.totalHouseholds[0])[0]
+  //   : 0;
+
+  // const totalHHCountsObject = overviewProject.totalHouseholds[0];
+  // const totalHHCounts = get(
+  //   totalHHCountsObject,
+  //   `${Object.values(totalHHCountsObject)}`,
+  //   0
+  // );
+
+  const totalHHCounts = get(
+    overviewProject,
+    "totalHouseholds"[0]["COUNT(1)"],
+    {}
+  );
+  // // const totalPCounts = overviewProject.totalPersons[0];
+  // console.log("totalHHCounts", totalHHCounts);
 
   return (
     <div style={{ backgroundColor: "#fff", padding: 15 }}>
@@ -54,9 +103,13 @@ const ProjectView = ({ projectId, selectedBlockGroups, layer }) => {
           Overview Project: {projectId}
         </div>
         <div>
-          <h3 className="mt-6 text-gray-900 text-sm font-medium">
+          {/* <h3 className="mt-6 text-gray-900 text-sm font-medium">
             Total households: {projectData.Households.length}, Total population:
             {projectData.Persons.length}
+          </h3> */}
+          <h3 className="mt-6 text-gray-900 text-sm font-medium">
+            Total households: {overviewProject.Households}, Total persons:
+            {overviewProject.Persons}
           </h3>
         </div>
         <div>
