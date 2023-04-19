@@ -104,12 +104,54 @@ export const generateSeedData = (layer, selectedVar) => {
 
     pdata.forEach((d) => (d.hhnum = hhnumLookup[d.SERIALNO])); // better than .map b/c no need to return
 
+    //adding ptype to the person data
+    pdata.forEach((d) => {
+      if (d.AGEP >= 18 && d.WKHP >= 30) {
+        d.ptype = 1;
+      } else if (d.AGEP >= 18 && d.WKHP < 30) {
+        d.ptype = 2;
+      } else if (d.AGEP >= 18 && d.AGEP <= 64 && d.SCHG === 15) {
+        d.ptype = 3;
+      } else if (d.AGEP >= 18 && d.WKHP < 1) {
+        d.ptype = 4;
+      } else if (d.AGEP >= 65 && d.WKHP < 1) {
+        d.ptype = 5;
+      } else if (d.AGEP >= 16 && d.AGEP <= 17 && d.SCHG >= 13 && d.SCHG <= 14) {
+        d.ptype = 6;
+      } else if (d.AGEP >= 6 && d.AGEP < 16 && d.SCHG >= 2 && d.SCHG <= 12) {
+        d.ptype = 7;
+      } else if (d.AGEP <= 5 && d.SCHG === 1) {
+        d.ptype = 8;
+      }
+    });
+
     // let test = pdata.map(d => d.hhnum = hhnumLookup[d.SERIALNO] )
 
     console.log("after p.hhnum", pdata);
 
     //console.log('seedPdata----', pdata,pdata[0], flatten(pdata), newpdata, test)
     //console.log('seedData_flatten' ,flatten(hhdata), pdata[0], flatten(pdata)),
+
+    //add ptype column
+
+    // const data = [
+    //   { age: 23, gender: 'male', status: 'single' },
+    //   { age: 27, gender: 'female', status: 'married' },
+    //   { age: 30, gender: 'male', status: 'married' },
+    //   { age: 32, gender: 'female', status: 'single' }
+    // ];
+
+    //     const ptype = pdata.reduce((acc, item) => {
+    //       if (item.AGEP >= 18  && item.WKHP <= 30 ) {
+    //         acc.push({
+
+    //           ptype: 1
+    //         });
+    //       }
+    //       return acc;
+    //     }, []);
+
+    // console.log(ptype);
 
     return {
       household: flatten(hhdata), // flatten(hhdata),

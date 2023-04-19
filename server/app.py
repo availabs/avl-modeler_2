@@ -241,11 +241,13 @@ def deleteByProjectId(projectId):
     dropgeocrosswalksql = f'''drop table if exists project_{projectId}_geocrosswalk'''
     drophhsql = f'''drop table if exists project_{projectId}_households'''
     droppsql = f'''drop table if exists project_{projectId}_persons'''
+    droplandusesql = f'''drop table if exists project_{projectId}_landuse'''
 
     cur.execute(dropdatadicsql).fetchall()
     cur.execute(dropgeocrosswalksql).fetchall()
     cur.execute(drophhsql).fetchall()
     cur.execute(droppsql).fetchall()
+    cur.execute(droplandusesql).fetchall()
 
     conn.commit()
 
@@ -383,6 +385,17 @@ def projectCreate_1():
 
     settings = request_data['setting']
 
+    selectedBGs = [d['BLKGRP'] for d in crosswork_data]
+    
+
+    print('crosswork_data---', crosswork_data, selectedBGs )
+
+
+
+    # for d in crosswork_data:
+    #  selectedBGs= d['BLKGRP']
+    
+
     if not os.path.exists(path):
         #  os.mkdir(os.path.join(path, 'output'))
 
@@ -497,7 +510,7 @@ def projectCreate_1():
     project_name = request_data_sql['project_name']
     status = request_data_sql['status']
 
-    job = queue.enqueue('tasks.popsynth.run_popsynth', args, project_id)
+    job = queue.enqueue('tasks.popsynth.run_popsynth', args, project_id, selectedBGs)
 
     return "{\"reponse\": \"success\"}"
     # return "{\"id\": project_id, \"project_name\": project_name, \"status\": status}"

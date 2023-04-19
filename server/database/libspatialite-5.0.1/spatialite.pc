@@ -1,0 +1,12 @@
+# Package Information for pkg-config
+
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: spatialite
+Description: Spatial SQL database engine based on SQLite
+Version: 5.0.1
+Libs: -L${libdir} -lspatialite -lminizip -lfreexl -lproj -lsqlite3 -lz -lsqlite3  -L/usr/lib/x86_64-linux-gnu -lgeos_c -lxml2 -lm
+Cflags: -I${includedir}

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Spatialite GUI
+GenericName=GUI for Spatialite databases
+Comment=Manage Spatialite databases
+Exec=spatialite_gui %f
+Icon=spatialite-gui
+Terminal=false
+Type=Application
+Categories=Education;Geography;Science;
+Keywords=spatial;sqlite;gis;
