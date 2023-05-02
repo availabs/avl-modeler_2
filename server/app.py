@@ -242,12 +242,15 @@ def deleteByProjectId(projectId):
     drophhsql = f'''drop table if exists project_{projectId}_households'''
     droppsql = f'''drop table if exists project_{projectId}_persons'''
     droplandusesql = f'''drop table if exists project_{projectId}_landuse'''
+    dropdistancesql = f'''drop table if exists project_{projectId}_distance'''
 
     cur.execute(dropdatadicsql).fetchall()
     cur.execute(dropgeocrosswalksql).fetchall()
     cur.execute(drophhsql).fetchall()
     cur.execute(droppsql).fetchall()
     cur.execute(droplandusesql).fetchall()
+    cur.execute(dropdistancesql).fetchall()
+    
 
     conn.commit()
 

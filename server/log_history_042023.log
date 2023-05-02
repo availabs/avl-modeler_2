@@ -1,0 +1,1000 @@
+ 1001  conda deactivate
+ 1002  cd server
+ 1003  ls
+ 1004  ll
+ 1005  ls
+ 1006  ll
+ 1007  ex[ort FLASK_APP=index
+ 1008  export FLASK_APP=index
+ 1009  flask run
+ 1010  conda activate ASIM_DEV
+ 1011  export FLASK_APP=index
+ 1012  flask run
+ 1013  source /home/jin/miniconda3/bin/activate
+ 1014  conda activate asim
+ 1015  deactivate asim
+ 1016  conda deactivate asim
+ 1017  deactivate base
+ 1018  conda deactivate base
+ 1019  conda deactivate
+ 1020  npm start
+ 1021  source /home/jin/miniconda3/bin/activate
+ 1022  conda activate asim
+ 1023  conda deactivate
+ 1024  cd server
+ 1025  ls
+ 1026  export FLASK_APP=index
+ 1027  flask run
+ 1028  activate ASIM_DEV
+ 1029  conda activate ASIM_DEV
+ 1030  export FLASK_APP=index
+ 1031  flask run
+ 1032  npm start
+ 1033  cd AVAIL/
+ 1034  cd code
+ 1035  ls
+ 1036  git clone https://github.com/availabs/availblog.git
+ 1037  globalprotect connect --portal uavpn.albany.edu
+ 1038  source /home/jin/miniconda3/bin/activate
+ 1039  conda activate asim
+ 1040  conda deactivate
+ 1041  source /home/jin/miniconda3/bin/activate
+ 1042  conda activate asim
+ 1043  conda deactivate
+ 1044  conda activate ASIM_DEV
+ 1045  conda list
+ 1046  from redis import Redis
+ 1047  cd server
+ 1048  ls
+ 1049  bash popsynthrun.sh 
+ 1050  source /home/jin/miniconda3/bin/activate
+ 1051  conda activate asim
+ 1052  conda deactivate
+ 1053  npm start
+ 1054  source /home/jin/miniconda3/bin/activate
+ 1055  conda activate asim
+ 1056  conda deactivate
+ 1057  cd server
+ 1058  conda activate ASIM_DEV
+ 1059  export FLASK_APP=index
+ 1060  flask run
+ 1061  cd server
+ 1062  history > history1.log
+ 1063  export FLASK_APP=index
+ 1064  activate ASIM_DEV
+ 1065  conda activate ASIM_DEV
+ 1066  export FLASK_APP=index
+ 1067  flask run
+ 1068  rq woker synpoprun-test1
+ 1069  rq worker synpoprun-test1
+ 1070  source /home/jin/miniconda3/bin/activate
+ 1071  conda activate asim
+ 1072  exit source
+ 1073  source /home/jin/miniconda3/bin/activate
+ 1074  conda activate asim
+ 1075  exit source
+ 1076  source /home/jin/miniconda3/bin/activate
+ 1077  conda activate asim
+ 1078  source /home/jin/miniconda3/bin/activate
+ 1079  conda activate asim
+ 1080  source /home/jin/miniconda3/bin/activate
+ 1081  conda activate asim
+ 1082  conda config --set auto_activate_base False
+ 1083  source /home/jin/miniconda3/bin/activate
+ 1084  conda activate ASIM_DEV
+ 1085  source /home/jin/miniconda3/bin/activate
+ 1086  conda activate ASIM_DEV
+ 1087  conda config --set auto_activate_base False
+ 1088  source /home/jin/miniconda3/bin/activate
+ 1089  conda activate ASIM_DEV
+ 1090  source /home/jin/miniconda3/bin/activate
+ 1091  conda activate ASIM_DEV
+ 1092  export FLASK_APP=index
+ 1093  flask run
+ 1094  cd server
+ 1095  export FLASK_APP=index
+ 1096  flask run
+ 1097  source /home/jin/miniconda3/bin/activate
+ 1098  conda activate asim
+ 1099  conda deactivate
+ 1100  conda config --set auto_activate_base False
+ 1101  conda activate ASIM_DEV
+ 1102  cd server
+ 1103  rq worker synpoprun-test1
+ 1104  flask run
+ 1105  rq worker synpoprun-test1
+ 1106  rq worker synpoprun-test2
+ 1107  rq worker synpoprun-test1
+ 1108  rq worker synpoprun-test2
+ 1109  rq worker synpoprun-test3
+ 1110  rq worker synpoprun-test4
+ 1111  rq worker synpop-test
+ 1112  rq worker test
+ 1113  rq worker snyPopTest
+ 1114  rq worker popSynth_test
+ 1115  rq worker popSynth_test1
+ 1116  rq worker popSynth_test2
+ 1117  rq worker popSynth_test3
+ 1118  rq worker popSynth_test3
+ 1119  rq worker popSynth_test4
+ 1120  rq worker popSynth_test5
+ 1121  rq worker popSynth_test6
+ 1122  cd server
+ 1123  conda activate ASIM_DEV
+ 1124  export FLASK_APP=index
+ 1125  flask run
+ 1126  conda deactivate
+ 1127  conda activate ASIM_DEV
+ 1128  export FLASK_APP=index
+ 1129  flask run
+ 1130  source /home/jin/miniconda3/bin/activate
+ 1131  conda activate ASIM_DEV
+ 1132  conda deactivate
+ 1133  npm start
+ 1134  globalprotect connect --portal uavpn.albany.edu
+ 1135  npm start
+ 1136  globalprotect connect --portal uavpn.albany.edu
+ 1137  npm start
+ 1138  cd server
+ 1139  activate ASIM_DEV
+ 1140  conda activate ASIM_DEV
+ 1141  history>history2.log
+ 1142  rq worker popSynth_test7
+ 1143  rq worker popSynth_test5
+ 1144  rq worker popSynth_test6
+ 1145  rq worker popSynth_test7
+ 1146  rq worker popSynth_test8
+ 1147  rq worker popSynth_test9
+ 1148  sudo service --status-all
+ 1149  rq worker popSynth_test9
+ 1150  cd server
+ 1151  conda activate ASIM_DEV
+ 1152  export FLASK_APP=index
+ 1153  flask run
+ 1154  cd server
+ 1155  conda activate ASIM_DEV
+ 1156  rq worker popSynth_run
+ 1157  cd server
+ 1158  export FLASK_APP=index
+ 1159  flask run
+ 1160  conda activate ASIM_DEV
+ 1161  export FLASK_APP=index
+ 1162  flask run
+ 1163  globalprotect connect --portal uavpn.albany.edu
+ 1164  conda activate ASIM_DEV
+ 1165  export FLASK_APP=index
+ 1166  cd server
+ 1167  flask run
+ 1168  cd server
+ 1169  conda activate ASIM_DEV
+ 1170  rq worker popSynth_run
+ 1171  npm start
+ 1172  cd server
+ 1173  rq worker popSynth_run
+ 1174  conda activate ASIM_DEV
+ 1175  rq worker popSynth_run
+ 1176  conda activate ASIM_DEV
+ 1177  export FLASK_APP=index
+ 1178  cd server
+ 1179  export FLASK_APP=index
+ 1180  flask run
+ 1181  globalprotect connect --portal uavpn.albany.edu
+ 1182  conda activate ASIM_DEV
+ 1183  cd server
+ 1184  export FLASK_APP=index
+ 1185  flask run
+ 1186  /home/jin/miniconda3/envs/ASIM_DEV/bin/python
+ 1187  conda activate ASIM_DEV
+ 1188  export FLASK_APP=index
+ 1189  cd server/
+ 1190  export FLASK_APP=index
+ 1191  flask run
+ 1192  export FLASK_APP=index
+ 1193  flask run
+ 1194  conda activate ASIM_DEV
+ 1195  cd server
+ 1196  rq worker popSynth_test9
+ 1197  sudo apt install nomacs
+ 1198  globalprotect connect --portal uavpn.albany.edu
+ 1199  npm start
+ 1200  ls
+ 1201  cd src/modules/avl-components/
+ 1202  git pull
+ 1203  git status
+ 1204  git checkout master
+ 1205  git pull
+ 1206  cd server
+ 1207  cd server/
+ 1208  conda activate ASIM_DEV
+ 1209  rq worker popSynth_test9
+ 1210  cd server
+ 1211  export FLASK_APP=index
+ 1212  conda activate ASIM_DEV
+ 1213  export FLASK_APP=index
+ 1214  flask run
+ 1215  globalprotect connect --portal uavpn.albany.edu
+ 1216  cd server
+ 1217  conda activate ASIM_DEV
+ 1218  export FLASK_APP=index
+ 1219  flask run
+ 1220  cd server
+ 1221  conda activate ASIM_DEV
+ 1222  rq worker popSynth_test9
+ 1223  npm start
+ 1224  npm run
+ 1225  npm run build
+ 1226  npm run
+ 1227  cd ser er
+ 1228  cd serer
+ 1229  cd server
+ 1230  conda activate ASIM_DEV
+ 1231  rq worker popSynth_test9
+ 1232  cd server
+ 1233  conda activate ASIM_DEV
+ 1234  export FLASK_APP=index
+ 1235  flask run
+ 1236  globalprotect connect --portal uavpn.albany.edu
+ 1237  cd AVAIL/code
+ 1238  git clone https://github.com/latsic/imgalign.git
+ 1239  globalprotect connect --portal uavpn.albany.edu
+ 1240  conda activate ASIM_DEV
+ 1241  cd server
+ 1242  rq worker popSynth_test9
+ 1243  npm start
+ 1244  conda activate ASIM_DEV
+ 1245  cd server
+ 1246  export FLASK_APP=index
+ 1247  flask run
+ 1248  globalprotect connect --portal uavpn.albany.edu
+ 1249  npm start
+ 1250  export NODE_OPTIONS=--openssl-legacy-provider
+ 1251  npm start
+ 1252  cd server
+ 1253  conda activate ASIM_DEV
+ 1254  rq worker popSynth_test9
+ 1255  conda activate ASIM_DEV
+ 1256  export FLASK_APP=index
+ 1257  flask run
+ 1258  cd server
+ 1259  export FLASK_APP=index
+ 1260  flask run
+ 1261  globalprotect connect --portal uavpn.albany.edu
+ 1262  cd server
+ 1263  conda activate ASIM_DEV
+ 1264  rq worker popSynth_test9
+ 1265  cd server
+ 1266  conda activate ASIM_DEV
+ 1267  export FLASK_APP=index
+ 1268  flask run
+ 1269  npm start
+ 1270  export NODE_OPTIONS=--openssl-legacy-provider
+ 1271  npm start
+ 1272  /home/jin/miniconda3/envs/ASIM_DEV/bin/python
+ 1273  cd server
+ 1274  conda activate ASIM_DEV
+ 1275  rq worker popSynth_test9
+ 1276  git add .
+ 1277  git commit 'delete button'
+ 1278  git commit -m 'delete button and init view page'
+ 1279  git pull
+ 1280  git push
+ 1281  npm start
+ 1282  cd server
+ 1283  conda activate ASIM_DEV
+ 1284  export FLASK_APP=index
+ 1285  flask run
+ 1286  sudo add-apt-repository ppa:inkscape.dev/stable
+ 1287  sudo apt update
+ 1288  sudo apt install inkscape
+ 1289  cd AVAIL/
+ 1290  ls
+ 1291  cd ..
+ 1292  cd downloads
+ 1293  ls
+ 1294  cd Downloads/
+ 1295  ls
+ 1296  chmod a+x Inkscape- Inkscape-9c6d41e-x86_64.AppImage
+ 1297  chmod a+x Inkscape-9c6d41e-x86_64.AppImage
+ 1298  ./ Inkscape-9c6d41e-x86_64.AppImage
+ 1299  ./Inkscape-9c6d41e-x86_64.AppImage
+ 1300  cd ..
+ 1301  ./Inkscape-9c6d41e-x86_64.AppImage
+ 1302  export NODE_OPTIONS=--openssl-legacy-provider
+ 1303  npm start
+ 1304  globalprotect connect --portal uavpn.albany.edu
+ 1305  conda activate ASIM_DEV
+ 1306  npm install d3
+ 1307  history> log_111822.log
+ 1308  rq worker popSynth_test9
+ 1309  cd server 
+ 1310  conda activate ASIM_DEV
+ 1311  rq worker popSynth_test9
+ 1312  git -v
+ 1313  git --v
+ 1314  git --version
+ 1315  code
+ 1316  cd server
+ 1317  conda activate ASIM_DEV
+ 1318  rq worker rq_popsynth
+ 1319  cd server
+ 1320  conda activate ASIM_DEV
+ 1321  flask run
+ 1322  export FLASK_APP=index
+ 1323  flask run
+ 1324  cd server
+ 1325  conda activate ASIM_DEV
+ 1326  export FLASK_APP=index
+ 1327  flask run
+ 1328  cd server
+ 1329  conda activate ASIM_DEV
+ 1330  rq worker rq_popsynth
+ 1331  python --version
+ 1332  rq worker rq_popsynth
+ 1333  sudo apt-get update
+ 1334  sudo apt-get upgrade
+ 1335  npm start
+ 1336  python --version
+ 1337  sudo apt-get update
+ 1338  sudo apt-get upgrade
+ 1339  python --version
+ 1340  python3 --version
+ 1341  python3
+ 1342  /usr/bin/python3 "/home/jin/AVAIL/code/myapp/python/python_tutorial /app.py"
+ 1343  /usr/bin/python3 "/home/jin/AVAIL/code/myapp/python/python_tutorial /app.py"
+ 1344  "/home/jin/AVAIL/code/myapp/python/Learn_Python _Full_Course_for_Beginners/venv/bin/python" -m pip install -U autopep8
+ 1345  "/home/jin/AVAIL/code/myapp/python/Learn_Python _Full_Course_for_Beginners/venv/bin/python" "/home/jin/AVAIL/code/myapp/python/Learn_Python _Full_Course_for_Beginners/app.py"
+ 1346  curl -I -x get http://wwww.albany.edu
+ 1347  curl -I -X GET  http://wwww.albany.edu
+ 1348  curl -I -X GET  https://wwww.albany.edu
+ 1349  curl -I -X GET  https://albany.edu
+ 1350  curl -I -X GET  https://www.albany.edu
+ 1351  curl -I -X GET  https://www.albany.edu/jj
+ 1352  code hello.html
+ 1353  http-server
+ 1354  code test.html
+ 1355  python test.py 
+ 1356  cd server
+ 1357  conda activate ASIM_DEV
+ 1358  flask run
+ 1359  cd server
+ 1360  conda activate ASIM_DEV
+ 1361  rq worker rq_popsynth
+ 1362  cd server/popsynth_runs/48/output/
+ 1363  ls
+ 1364  cd ../
+ 1365  ls
+ 1366  cd data/
+ 1367  ls
+ 1368  less geo_cross_walk.csv 
+ 1369  ls
+ 1370  cd counter-app/ls
+ 1371  ls
+ 1372  cd counter-app/
+ 1373  ls
+ 1374  npm start
+ 1375  cd ..
+ 1376  npm start
+ 1377  cd counter-app/
+ 1378  npm start
+ 1379  cd ..
+ 1380  cd old-conter-app/
+ 1381  ls
+ 1382  npm start
+ 1383  cd ..
+ 1384  cd counter-app/
+ 1385  npm start
+ 1386  npm start
+ 1387  cd server
+ 1388  flask run
+ 1389  conda activate ASIM_DEV
+ 1390  flask run
+ 1391  conda activate ASIM_DEV
+ 1392  rq worker rq_popsynth
+ 1393  cd server
+ 1394  flask run
+ 1395  conda activate ASIM_DEV
+ 1396  flask run
+ 1397  globalprotect connect --portal uavpn.albany.edu
+ 1398  top
+ 1399  npm start
+ 1400  export NODE_OPTIONS=--openssl-legacy-provider
+ 1401  npm start
+ 1402  pip install openmatrix
+ 1403  pip3 install openmatrix
+ 1404  pip3 install openmatrix
+ 1405  pip3 install packaging openmatrix
+ 1406  pip3 install packaging
+ 1407  pip3 install openmatrix
+ 1408  kill 14690
+ 1409  ls
+ 1410  cd Downloads/
+ 1411  ls
+ 1412  head -n3 thunder-file_884e228f.json 
+ 1413  head -n1 thunder-file_884e228f.json 
+ 1414  clear 
+ 1415  head -n1 thunder-file_884e228f.json 
+ 1416  clear
+ 1417  cd ..
+ 1418  cd AVAIL
+ 1419  ls
+ 1420  cd code
+ 1421  ls
+ 1422  cd activitysim/
+ 1423  ls
+ 1424  cd activitysim/
+ 1425  ls
+ 1426  cd ..
+ 1427  ls
+ 1428  conda activate ASIM
+ 1429  conda activate asim
+ 1430  jupyter notebook
+ 1431  deactivate asim
+ 1432  conda deactivate
+ 1433  cd activitysim/
+ 1434  ls
+ 1435  conda activate asim
+ 1436  jupyter notebook
+ 1437  conda deactivaet
+ 1438  conda deactivate
+ 1439  ls
+ 1440  cd activitysim/
+ 1441  ls
+ 1442  conda activate asim
+ 1443  jupyter notebook
+ 1444  conda jupyter notebook
+ 1445  jupyter notebook
+ 1446  conda deactivate
+ 1447  conda activate asimtest
+ 1448  jupyter notebook
+ 1449  cd ..
+ 1450  ls
+ 1451  cd activitysim_new/
+ 1452  conda create -n asim_new python=3.9 activitysim -c conda-forge --override-channels
+ 1453  conda activate asim_new
+ 1454  jupyter notebook
+ 1455  ls
+ 1456  conda deactivate
+ 1457  ls
+ 1458  cd ..
+ 1459  cd activitysim_new/
+ 1460  git clone https://github.com/ActivitySim/activitysim.git
+ 1461  ls
+ 1462  cd activitysim/
+ 1463  ls
+ 1464  conda env create --file=conda-environments/activitysim-dev.yml --name ASIM_DEV_new
+ 1465  cd ll
+ 1466  cd activitysim
+ 1467  ls
+ 1468  cd examples/
+ 1469  conda activate ASIM_DEV_new
+ 1470  activitysim create -e prototype_mtc -d test_prototype_mtc
+ 1471  ls
+ 1472  cd test_prototype_mtc/
+ 1473  activitysim run -c configs -o output -d data
+ 1474  ls
+ 1475  ll
+ 1476  cd configs
+ 1477  ll
+ 1478  less trip_destination.csv 
+ 1479  less trip_destination_sample.csv 
+ 1480  less settings.yaml 
+ 1481  ll
+ 1482  cd ../
+ 1483  ll
+ 1484  cd configs_mp/
+ 1485  ll
+ 1486  less logging.yaml 
+ 1487  less settings.yaml 
+ 1488  cd ../
+ 1489  ls
+ 1490  cd data/
+ 1491  ls
+ 1492  ll
+ 1493  less households.csv 
+ 1494  less land_use.csv 
+ 1495  less mtc_asim.h5 
+ 1496  less override_hh_ids.csv 
+ 1497  less persons.csv 
+ 1498  less skims.omx 
+ 1499  cd ../
+ 1500  ls
+ 1501  cd output/
+ 1502  ll
+ 1503  cd trace/
+ 1504  ls
+ 1505  less school_location-6ec3d6.csv 
+ 1506  cd ../
+ 1507  ls
+ 1508  ll
+ 1509  less cdap_spec_
+ 1510  less cdap_spec_2.csv 
+ 1511  less cdap_spec_2.csv \
+ 1512  less cdap_spec_2.csv
+ 1513  less final_trips.csv
+ 1514  less final_tours.csv 
+ 1515  less final_trips.csv
+ 1516  cd ../
+ 1517  ls
+ 1518  cd ../
+ 1519  ls
+ 1520  ll
+ 1521  cd placeholder_multiple_zone/
+ 1522  ll
+ 1523  cd configs_1_zone/
+ 1524  ls
+ 1525  cd ../
+ 1526  ls
+ 1527  cd data
+ 1528  ll
+ 1529  cd ,,/.
+ 1530  ls
+ 1531  cd ,,.
+ 1532  cd ../
+ 1533  ls
+ 1534  less marin_fix.py 
+ 1535  cd ../
+ 1536  ll
+ 1537  cd prototype_arc/
+ 1538  ll
+ 1539  cd configs/
+ 1540  ll
+ 1541  cd ../
+ 1542  ls
+ 1543  less README.MD 
+ 1544  cd data/
+ 1545  ls
+ 1546  ll
+ 1547  cd ../
+ 1548  ls
+ 1549  cd prototype_mtc
+ 1550  ls
+ 1551  cd data/
+ 1552  ll
+ 1553  cd ..
+ 1554  cd placeholder_multiple_zone/
+ 1555  ls
+ 1556  cd ..
+ 1557  activitysim create -e placeholder_multiple_zone -d test_placeholder_multiple_zone
+ 1558  cd ..
+ 1559  activitysim create -e placeholder_multiple_zone -d test_placeholder_multiple_zone
+ 1560  activitysim creat -e prototype_mtc -d test
+ 1561  activitysim create -e prototype_mtc -d test
+ 1562  ks
+ 1563  ls
+ 1564  cd examples/
+ 1565  ls
+ 1566  activitysim create -e placeholder_multiple_zone/ -d test_multi_zone
+ 1567  ls
+ 1568  cd test_placeholder_multiple_zone/
+ 1569  activitysim run -c configs_1_zone -o output -d data_1
+ 1570  activitysim run -c configs -o output -d data
+ 1571  cd ..
+ 1572  cd activitysim
+ 1573  ls
+ 1574  cd examples/
+ 1575  ls
+ 1576  activitysim create -e example_mtc -d test_example_mtc
+ 1577  conda activate ASIM_DEV
+ 1578  activitysim create -e example_mtc -d test_example_mtc
+ 1579  cd test_example_mtc/
+ 1580  activitysim run -c configs -o output -d data
+ 1581  ll
+ 1582  less README.MD 
+ 1583  cd server
+ 1584  conda activate ASIM_DEV
+ 1585  flask run
+ 1586  clear
+ 1587  flask run
+ 1588  clear 
+ 1589  flask run
+ 1590  clear
+ 1591  flask run
+ 1592  clear
+ 1593  flask run
+ 1594  clear
+ 1595  flask run
+ 1596  clear
+ 1597  flask run
+ 1598  clear 
+ 1599  flask run
+ 1600  clear
+ 1601  flask run
+ 1602  npm start
+ 1603  git add.
+ 1604  git add .
+ 1605  git commit -m "blockGroupID format issue fixed"
+ 1606  git push
+ 1607  ls
+ 1608  npm start
+ 1609  git add.
+ 1610  git add .
+ 1611  git commit -m "add total value to the chart"
+ 1612  git pull
+ 1613  git push
+ 1614  npm start
+ 1615  git add .
+ 1616  git commit -m 'dropdown update with meta name"
+ 1617  git commit -m 'dropdown update with meta name'
+ 1618  git pull
+ 1619  git push
+ 1620  npm start
+ 1621  git add .
+ 1622  git commit -m 'update overview route in  projectview'
+ 1623  git push
+ 1624  cd server
+ 1625  conda activate ASIM_DEV
+ 1626  rq worker rq_popsynth
+ 1627  cd ..
+ 1628  cd home
+ 1629  ls
+ 1630  cd jin/
+ 1631  ls
+ 1632  cd AVAIL/
+ 1633  cd code
+ 1634  ls
+ 1635  cd activitysim/
+ 1636  ls
+ 1637  cd activitysim/
+ 1638  ls
+ 1639  cd activitysim_new/
+ 1640  ls
+ 1641  cd a
+ 1642  cd activitysim/
+ 1643  sl
+ 1644  ls
+ 1645  cd activitysim
+ 1646  ls
+ 1647  cd examples/
+ 1648  cd test_prototype_mtc/
+ 1649  conda activate ASIM_DEV_new
+ 1650  jupyter notebook
+ 1651  cd ..
+ 1652  ls
+ 1653  cd prototype_mtc
+ 1654  ls
+ 1655  cd notebooks/
+ 1656  jupyter notebook
+ 1657  cd AVAIL/
+ 1658  cd code
+ 1659  ls
+ 1660  history > history.log
+ 1661  cd ..
+ 1662  python -V
+ 1663  python3
+ 1664  pip3 uninstall packaging
+ 1665  pip3 uninstall openmatrix
+ 1666  ls
+ 1667  ..
+ 1668  cd ..
+ 1669  ls
+ 1670  cd ..
+ 1671  ..
+ 1672  ls
+ 1673  cd usr
+ 1674  ls
+ 1675  cd ..
+ 1676  ls
+ 1677  cd ..
+ 1678  ls
+ 1679  cd home
+ 1680  ls
+ 1681  cd jin
+ 1682  ls
+ 1683  cd ..
+ 1684  ls
+ 1685  cd ..
+ 1686  ls
+ 1687  cd etc/
+ 1688  ls
+ 1689  cd apt
+ 1690  ls
+ 1691  less sources.list
+ 1692  cd AVAIL/
+ 1693  cd code
+ 1694  cd activitysim/
+ 1695  ls
+ 1696  cd activitysim/
+ 1697  ls
+ 1698  d activitysim_new/
+ 1699  ls
+ 1700  cd activitysim_new/
+ 1701  ls
+ 1702  cd activitysim/
+ 1703  ls
+ 1704  cd activitysim
+ 1705  ls
+ 1706  cd examples/
+ 1707  ls
+ 1708  conda activate ASIM_DEV
+ 1709  ls
+ 1710  cd test_prototype_mtc/
+ 1711  ls
+ 1712  activitysim run -c configs -o output_test -d data
+ 1713  conda deactivate
+ 1714  conda activate ASIM_DEV_new
+ 1715  activitysim run -c configs -o output_test -d data
+ 1716  activitysim run -c configs -o output_test_1 -d data
+ 1717  activitysim run -c configs -o output -d data
+ 1718  activitysim run -c configs -o output_test_2 -d data
+ 1719  pip3 uninstall openmatrix
+ 1720  pip3 install ViTables
+ 1721  cd ..
+ 1722  ls
+ 1723  cd keyrings/
+ 1724  ls
+ 1725  less qgis-archive-keyring.gpg 
+ 1726  cd ..
+ 1727  ls
+ 1728  cd etc
+ 1729  ls
+ 1730  cd apt
+ 1731  ls
+ 1732  cd sources.list.d/
+ 1733  ls
+ 1734  qgis.sources:
+ 1735  less google-chrome.list
+ 1736  ls
+ 1737  cd ..
+ 1738  ls
+ 1739  sources.list
+ 1740  less sources.list
+ 1741  sudo nano /etc/apt/sources.list.d/qgis.sources
+ 1742  cd sources.list.d/
+ 1743  ls
+ 1744  sudp apt update
+ 1745  sudo apt update
+ 1746  sudo apt install qgis qgis-plugin-grass
+ 1747  sudo nano /etc/apt/sources.list.d/qgis.sources
+ 1748  sudp apt update
+ 1749  sudo apt update
+ 1750  sudo nano /etc/apt/sources.list.d/qgis.sources
+ 1751  sudo apt update
+ 1752  sudo apt install qgis qgis-plugin-grass
+ 1753  sudo nano /etc/apt/sources.list.d/qgis.sources
+ 1754  sudo apt update
+ 1755  sudo apt install qgis qgis-plugin-grass
+ 1756  wget https://download.qgis.org/downloads/qgis-archive-keyring.gpg
+ 1757  sudo mkdir -m755 -p /etc/apt/keyrings  # not needed since apt version 2.4.0 like Debian 12 and Ubuntu 22 or newer
+ 1758  sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
+ 1759  ls
+ 1760  sudo nano /etc/apt/sources.list.d/qgis.sources
+ 1761  sudo apt update
+ 1762  wget https://download.qgis.org/downloads/qgis-archive-keyring.gpg
+ 1763  sudo mkdir -m755 -p /etc/apt/keyrings
+ 1764  sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
+ 1765  sudo apt update
+ 1766  sudo nano /etc/apt/sources.list.d/qgis.sources
+ 1767  lsb_release -cs
+ 1768  sudo nano /etc/apt/sources.list.d/qgis.sources
+ 1769  sudo apt update
+ 1770  sudo nano /etc/apt/sources.list.d/qgis.sources
+ 1771  sudo apt update
+ 1772  sudo nano /etc/apt/sources.list.d/qgis.sources
+ 1773  sudo apt update
+ 1774  sudo apt install qgis qgis-plugin-grass
+ 1775  cd ..
+ 1776  ls
+ 1777  less sources.list
+ 1778  wget -qO - https://qgis.org/downloads/qgis-2020.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
+ 1779  sudo gpgconf --kill dirmngr
+ 1780  sudo chown -R $USER ~/.gnupg
+ 1781  wget -qO - https://qgis.org/downloads/qgis-2020.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
+ 1782  wget -qO - https://qgis.org/downloads/qgis-2022.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
+ 1783  wget -qO - https://qgis.org/downloads/qgis-2023.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
+ 1784  wget -qO - https://qgis.org/downloads/qgis-2021.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
+ 1785  wget -qO - https://qgis.org/downloads/qgis-2022.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
+ 1786  sudo apt update
+ 1787  sudo apt install qgis qgis-plugin-grass
+ 1788  sudo nano /etc/apt/sources.list
+ 1789  wget -qO - https://qgis.org/downloads/qgis-2021.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
+ 1790  cd ..
+ 1791  la
+ 1792  cp sources.list sources.list_bu
+ 1793  sudo cp sources.list sources.list_bu
+ 1794  ls
+ 1795  pip3 uninstall openmatrix
+ 1796  . /etc/os-release; echo "$UBUNTU_CODENAME"
+ 1797  cd ..
+ 1798  git clone https://github.com/uvemas/ViTables.git vitables_tip
+ 1799  ls
+ 1800  cd vitables_tip/
+ 1801  ls
+ 1802  cp scripts/start.py run_vitables.py
+ 1803  cd ..
+ 1804  cd..
+ 1805  cd ..
+ 1806  ls
+ 1807  cd ..
+ 1808  ls
+ 1809  cd ..
+ 1810  ls
+ 1811  cd ..
+ 1812  ls
+ 1813  cp scripts/start.py run_vitables.py
+ 1814  ls
+ 1815  cd home
+ 1816  ls
+ 1817  cd jin
+ 1818  ls
+ 1819  pip3 install ViTables
+ 1820  npm start
+ 1821  cd serer
+ 1822  cd server
+ 1823  conda activate ASIM_DEV
+ 1824  flask run
+ 1825  cd server
+ 1826  conda activate ASIM_DEV
+ 1827  rq worker rq_popsynth
+ 1828  npm start
+ 1829  conda activate ASIM_DEV
+ 1830  cd server
+ 1831  flask run
+ 1832  cd server
+ 1833  conda activate ASIM_DEV
+ 1834  rq worker rq_popsynth
+ 1835  npm start
+ 1836  sudo apt-get update
+ 1837  sudo apt-get install spatialite-bin libspatialite-dev
+ 1838  sqlite3 --version
+ 1839  cd server
+ 1840  conda activate ASIM_DEV
+ 1841  flask run
+ 1842  cd server
+ 1843  conda activate ASIM_DEV
+ 1844  conda deactivate
+ 1845  conda activaet ASIM_DEV_new
+ 1846  conda activate ASIM_DEV_new
+ 1847  rq worker rq_popsynth
+ 1848  conda deactivate
+ 1849  conda activate ASIM_DEV
+ 1850  rq worker rq_popsynth
+ 1851  cd server
+ 1852  conda activate ASIM_DEV
+ 1853  flask run
+ 1854  cd server
+ 1855  conda activate ASIM_DEV
+ 1856  rq worker rq_popsynth
+ 1857  sqlite3
+ 1858  cd AVAIL/code
+ 1859  ls
+ 1860  cd avl-modeler2
+ 1861  ls
+ 1862  cd server/
+ 1863  ls
+ 1864  cd database/
+ 1865  ls
+ 1866  spatialite --version
+ 1867  ls
+ 1868  ogr2ogr -update -append -f SQLite activitysimserver.sqlite -nln "tl_2019_36_bg_centroids" -a_srs "EPSG:4326" tl_2019_bg_centroids.geojson 
+ 1869  ls
+ 1870  tar -xvf libspatialite-5.0.1.tar.gz
+ 1871  ls
+ 1872  cd libspatialite-5.0.1/
+ 1873  ./configure
+ 1874  make
+ 1875  ./configure --disable-rttopo
+ 1876  make
+ 1877  sudo make install
+ 1878  sudo apt-get update && apt-get -y install libproj-dev
+ 1879  sudo apt-get install proj-bin
+ 1880  sudo apt update
+ 1881  sudo apt install libsqlite3-mod-spatialite
+ 1882  SELECT load_extension('mod_spatialite');
+ 1883  find / -name "mod_spatialite.so"
+ 1884  export /home/jin/AVAIL/code/avl-modeler2/server/database/libspatialite-5.0.1/src/.libs/=/usr/local/lib
+ 1885  export LD_LIBRARY_PATH=/home/jin/AVAIL/code/avl-modeler2/server/database/libspatialite-5.0.1/src/.libs
+ 1886  cd ..
+ 1887  ls
+ 1888  ogr2ogr -update -append -f SQLite activitysimserver.sqlite -nln "tl_2019_36_bg_centroids" -a_srs "EPSG:4326" tl_2019_bg_centroids.geojson 
+ 1889  ogr2ogr -update -append -f SQLite activitysim_matrixData.sqlite -nln "tl_2019_36_bg" -a_srs "EPSG:4326" tl_2019_bg.geojson
+ 1890  ogr2ogr -update -append -f SQLite activitysim_matrixData.sqlite -nln "tl_2019_36_puma" -a_srs "EPSG:4326" tl_2019_puma10.geojson 
+ 1891  history > history.log
+ 1892  sqlite --version
+ 1893  sqlite3
+ 1894  cd server
+ 1895  conda activate ASIM_DEV
+ 1896  flask run
+ 1897  ls
+ 1898  cd database/
+ 1899  ls
+ 1900  python create.py 
+ 1901  python load_csv.py 
+ 1902  flask run
+ 1903  cd ..
+ 1904  flask run
+ 1905  cd ..
+ 1906  cd /usr/local/lib/mod_spatialite.so
+ 1907  /usr/local/lib/mod_spatialite.so
+ 1908  cd /usr/local/lib/
+ 1909  ls
+ 1910  locate mod_spatialite
+ 1911  echo $LD_LIBRARY_PATH
+ 1912  export LD_LIBRARY_PATH=/usr/local/lib/
+ 1913  echo $LD_LIBRARY_PATH
+ 1914  ls
+ 1915  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/mod_spatialite.so.7.1.0
+ 1916  echo $LD_LIBRARY_PATH
+ 1917  globalprotect connect --portal uavpn.albany.edu
+ 1918  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/mod_spatialite.so.7.1.0
+ 1919  sqlite3
+ 1920  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/mod_spatialite.so
+ 1921  echo $LD_LIBRARY_PATH
+ 1922  cd AVAIL/code
+ 1923  ls
+ 1924  cd avl-modeler2
+ 1925  cd server/
+ 1926  cd database/
+ 1927  ls
+ 1928  sqlite3 --version
+ 1929  sudo apt-get install binutils libproj-dev gdal-bin
+ 1930  sqlite3
+ 1931  sqlite3 --version
+ 1932  wget https://download.osgeo.org/geos/geos-X.Y.Z.tar.bz2
+ 1933  wget https://download.osgeo.org/geos/geos-3.11.2.tar.bz2
+ 1934  ls
+ 1935  tar xjf geos-3.11.2.tar.bz2 
+ 1936  ls
+ 1937  cd geos-3.11.2/
+ 1938  ls
+ 1939  mkdir build
+ 1940  cd build/
+ 1941  cmake -DCMAKE_BUILD_TYPE=Release ..
+ 1942  cd ..
+ 1943  apt-cache policy libgeos-dev
+ 1944  apt-cache policy libproj-dev
+ 1945  ls
+ 1946  rm rf geos-3.11.2
+ 1947  rm -r geos-3.11.2
+ 1948  rm geos-3.11.2.tar.bz2 
+ 1949  sqlite3
+ 1950  history > history_1.log
+ 1951  find / -name "mod_spatialite.so"
+ 1952  sqlite3
+ 1953  ls
+ 1954  ogr2ogr -update -append -f SQLite activitysim_matrixData.sqlite -nln "tl_2019_36_bg_1" -a_srs "EPSG:4326" tl_2019_bg_new.geojson
+ 1955  ls
+ 1956  tar spatialite_gui-2.1.0-beta1.tar.gz
+ 1957  tar -xvf spatialite_gui-2.1.0-beta1.tar.gz
+ 1958  ls
+ 1959  cd spatialite_gui-2.1.0-beta1/
+ 1960  ./configure
+ 1961  make
+ 1962  sudo make install
+ 1963  ./autogen.sh
+ 1964  ls
+ 1965  cd ..
+ 1966  ls
+ 1967  ogr2ogr -update -append -f SQLite -dsco SPATIALITE=YES activitysim_matrixData.sqlite -nln "tl_2019_36_bg_2" -a_srs "EPSG:4326" tl_2019_bg.geojson
+ 1968  ogr2ogr -update -append -f SQLite -dsco SPATIALITE=YES FORMAT=SPATIALITE activitysim_matrixData.sqlite -nln "tl_2019_36_bg_3" -a_srs "EPSG:4326" tl_2019_bg.geojson
+ 1969  ogr2ogr -update -append -f SQLite -dsco FORMAT=SPATIALITE activitysim_matrixData.sqlite -nln "tl_2019_36_bg_3" -a_srs "EPSG:4326" tl_2019_bg.geojson
+ 1970  cd AVAIL/code
+ 1971  ls
+ 1972  cd avl-modeler2
+ 1973  ls
+ 1974  cd server
+ 1975  ls
+ 1976  cd database/
+ 1977  ls
+ 1978  history > history.log
+ 1979  ls
+ 1980  globalprotect connect --portal uavpn.albany.edu
+ 1981  cd server
+ 1982  conda activate ASIM_DEV
+ 1983  rq worker rq_popsynth
+ 1984  cd server
+ 1985  conda activate ASIM_DEV
+ 1986  flask run
+ 1987  lsof
+ 1988  conda deactivate
+ 1989  conda activate ASIM_DEV
+ 1990  flask run
+ 1991  npm start
+ 1992  cd server
+ 1993  conda activate ASIM_DEV
+ 1994  flask run
+ 1995  cd server
+ 1996  conda activate ASIM_DEV
+ 1997  rq worker rq_popsynth
+ 1998  cd server
+ 1999  conda activate ASIM_DEV
+ 2000  history > log_history_042023.log

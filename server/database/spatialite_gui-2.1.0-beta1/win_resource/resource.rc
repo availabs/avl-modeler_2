@@ -1,3 +1,0 @@
-#include "wx/msw/wx.rc"
-
-AFX_IDI_STD_FRAME       ICON    DISCARDABLE     "win_resource/icon.ico"
