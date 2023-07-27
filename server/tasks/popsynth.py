@@ -9,11 +9,13 @@ import sqlite3
 from sqlite3 import Error
 import pandas as pd
 import shutil
+import os
 
 import openmatrix as omx
 import numpy as np
 
 import pandas as pd
+import csv
 
 
 
@@ -70,9 +72,10 @@ def run_popsynth(args, project_id, selectedBGs):
         con.commit()
         con.close()
 
+    #   return "failed status inserted"
         print('PopSynth run failed')
 
-    #   return "failed status inserted"
+
 
 
 def load_popsynth_run(folder, project_id, selectedBGs):
@@ -140,7 +143,7 @@ def load_popsynth_run(folder, project_id, selectedBGs):
     # shutil.rmtree(folder)
 
     #call create_landuse
-    create_landuse_table(project_id, selectedBGs)
+    create_landuse_table(project_id, selectedBGs, folder)
 
     return "{\"reponse\": \"success inserting datadict,person,households,geocrosswalk\"}"
 
@@ -148,45 +151,144 @@ def load_popsynth_run(folder, project_id, selectedBGs):
 #  create landuse table in sqldb
 
 
-def create_landuse_table(project_id, selectedBGs):
+def create_landuse_table(project_id, selectedBGs,folder):
     con = get_db_connection()
     cur = con.cursor()
 
     cur.execute('''CREATE TABLE project_'''+project_id+'''_landuse AS
                     select 
-                    tract || bg as TAZ, 
+                    ROW_NUMBER() OVER (ORDER BY bg) AS TAZ,
+                    bg as BG,
                     tract as DISTRICT,
-                    count( distinct household_id) as TOTHH,
-                    count(1) as TOTPOP,
+                    tract as SD,
+                    tract as COUNTY,
+                    COALESCE(count( distinct household_id), 0)  as TOTHH,
+                    COALESCE(count(1), 0)  as TOTPOP,
                     100 as TOTACRE, -- will need to join on spatial data
-                    70 as RESARCRE, 
+                    70 as RESACRE, 
                     30 as CIACRE,
-                    sum(CASE  when ESR is null then 0 else 1 end) as TOTEMP,
-                    sum(CASE  when ( CAST(AGEP AS INTEGER) < 19 and CAST(AGEP AS INTEGER) >= 5 ) then 1 else 0 end) as AGE519,
-                    sum(CASE  when CAST(ESR AS INTEGER) = 1.0  then 1 else 0 end) as RETEMP,
-                    sum(CASE  when CAST(ESR AS INTEGER) = 2.0  then 1 else 0 end) as FPSEMP,
-                    sum(CASE  when CAST(ESR AS INTEGER) = 3.0 then 1 else 0 end) as HEREMP,
-                    sum(CASE  when CAST(ESR AS INTEGER) = 4.0  then 1 else 0 end) as AGREMP,
-                    sum(CASE  when CAST(ESR AS INTEGER) = 5.0  then 1 else 0 end) as MWTEMP,
-                    sum(CASE  when CAST(ESR AS INTEGER) = 6.0  then 1 else 0 end) as OTHEMP,
+                    COALESCE(sum(CASE  when ESR is null then 0 else 1 end), 0)  as TOTEMP,
+                    COALESCE(sum(CASE  when ( CAST(AGEP AS INTEGER) < 19 and CAST(AGEP AS INTEGER) >= 5 ) then 1 else 0 end), 0)  as AGE0519,
+                    COALESCE(sum(CASE  when CAST(ESR AS INTEGER) = 1.0  then 1 else 0 end), 0)  as RETEMPN,
+                    COALESCE(sum(CASE  when CAST(ESR AS INTEGER) = 2.0  then 1 else 0 end), 0)  as FPSEMPN,
+                    COALESCE(sum(CASE  when CAST(ESR AS INTEGER) = 3.0 then 1 else 0 end), 0)  as HEREMPN,
+                    COALESCE(sum(CASE  when CAST(ESR AS INTEGER) = 6.0  then 1 else 0 end), 0)  as OTHEMPN,
+                    COALESCE(sum(CASE  when CAST(ESR AS INTEGER) = 4.0  then 1 else 0 end), 0)  as AGREMPN,
+                    COALESCE(sum(CASE  when CAST(ESR AS INTEGER) = 5.0  then 1 else 0 end), 0)  as MWTEMPN,
                     5 as PRKCST,
                     10 as OPRKCST,
                     0 as area_type,
-                    sum(CASE  when (CAST(SCHG AS INTEGER) < 15 and CAST(SCHG AS INTEGER) >= 11) then 1 else 0 end) as HSENROLL,
-                    sum(CASE  when ( CAST(SCHG AS INTEGER) < 15 and CAST(SCHG AS INTEGER) >= 11 and CAST(WKHP AS INTEGER) >=30) then 1 else 0 end) as COLLFTE,
-                    sum(CASE  when ( CAST(SCHG AS INTEGER) < 15 and CAST(SCHG AS INTEGER) >= 11 and CAST(WKHP AS INTEGER) < 30) then 1 else 0 end) as COLLPTE,
-                    JWMNP as TERMINAL
+                    COALESCE(sum(CASE  when (CAST(SCHG AS INTEGER) < 15 and CAST(SCHG AS INTEGER) >= 11) then 1 else 0 end), 0)  as HSENROLL,
+                    COALESCE(sum(CASE  when ( CAST(SCHG AS INTEGER) < 15 and CAST(SCHG AS INTEGER) >= 11 and CAST(WKHP AS INTEGER) >=30) then 1 else 0 end), 0)  as COLLFTE,
+                    COALESCE(sum(CASE  when ( CAST(SCHG AS INTEGER) < 15 and CAST(SCHG AS INTEGER) >= 11 and CAST(WKHP AS INTEGER) < 30) then 1 else 0 end), 0)  as COLLPTE,
+                    3 as  TOPOLOGY,
+                    COALESCE(JWMNP, 0)  as TERMINAL
 
                     from project_'''+project_id+'''_persons
-                    group by taz
+                    group by bg
 
                     ''')
     con.commit()
+
+
+    # Execute a SELECT statement to retrieve the data from the table
+    # landuse_data = cur.execute('''SELECT * FROM project_'''+project_id+'''_landuse''').fetchall()
+
+    # con.commit()
+
+    cur.execute('''SELECT * FROM project_'''+project_id+'''_landuse''')
+    # headers = [description[0] for description in cur.description]
+    landuse_data = cur.fetchall()
+    print("landuse_data", landuse_data[:2])
+
+    # # Retrieve the column names
+    # headers = [description[0] for description in cur.description]
+
+    # # Open a CSV file for writing
+    # with open('popsynth_runs/landuse.csv', 'w', newline='') as landuse:
+    #     # Create a CSV writer object
+    #     writer = csv.writer(landuse)
+
+    #     # Write the column headers to the CSV file
+    #     writer.writerow(headers)
+    #     # count = 0
+
+    #     # Write the data rows to the CSV file
+    #     for row in landuse_data:
+    #         # if count == 0:
+    #         #     # header = landuse_data.keys()
+    #         #     writer.writerow(headers)
+    #         #     count += 1
+
+    #         writer.writerow(row.values())
+
+    # Commit changes to the database
+    cur.execute('''SELECT * FROM project_'''+project_id+'''_persons''')
+    # headers = [description[0] for description in cur.description]
+    persons_data = cur.fetchall()
+    print("persons_data", persons_data[:2])
+
+
+
+    #     -- Add a new column to the table
+    # ALTER TABLE project_1_households ADD COLUMN TAZ2 INTEGER;
+
+    # -- Update the TAZ values based on BG
+    # UPDATE project_1_households SET TAZ2 = (
+    # SELECT COUNT(*) FROM (
+    #     SELECT DISTINCT BG FROM project_1_households
+    # ) AS t
+    # WHERE t.BG <= project_1_households.BG
+    # );
+
+
+
+
+    cur.execute('''ALTER TABLE project_'''+project_id+'''_households ADD COLUMN TAZ INTEGER''')
+    cur.execute('''UPDATE project_'''+project_id+'''_households SET TAZ = (
+     SELECT TAZ  FROM project_'''+project_id+'''_landuse
+     WHERE project_'''+project_id+'''_landuse.BG = project_'''+project_id+'''_households.BG
+     )''')
+
+    cur.execute('''SELECT * FROM project_'''+project_id+'''_households''')
+  
+    # headers = [description[0] for description in cur.description]
+    households_data = cur.fetchall()
+    print("households_data", households_data[:2])    
+
+    con.commit()
     con.close()
 
+
+    # using Pondas creating csv file --much simpler 
+    path = folder + '/output/' 
+    os.makedirs(os.path.join(path, 'activitysim_input/'))
+
+    df = pd.DataFrame(landuse_data)
+    df.to_csv(path + 'activitysim_input/land_use.csv', index=False)
+
+    df = pd.DataFrame(persons_data)
+    df["PERID"] = df["index"]+1
+
+    df["ptype"] = df["ptype"].fillna(value=4)
+    df["pstudent"] = df["pstudent"].fillna(value=3)
+    df["pemploy"] = df["pemploy"].fillna(value=3)
+    
+    # df['JWMNP'] = np.random.randint(1, 200, df.shape[0])
+    # df['SCHGR'] = np.random.randint(1, 3, df.shape[0])
+    # df['WKHPR'] = np.random.randint(1, 4, df.shape[0])
+    # df.fillna(0, inplace=True)
+    df.fillna(2, inplace=True)
+
+    df.to_csv(path + 'activitysim_input/persons.csv', index=False)
+
+    df = pd.DataFrame(households_data)
+    df.fillna(0, inplace=True)
+    df.to_csv(path + 'activitysim_input/households.csv', index=False)
+
      
-    # create_distance_table(project_id, selectedBGs)
-    matrix_omx(project_id,selectedBGs)
+    #call_create_distance_table(project_id, selectedBGs)
+    matrix_omx(project_id,selectedBGs,folder)
 
     return "{\"reponse\": \"success inserting landuse\"}"
 
@@ -252,7 +354,7 @@ def create_landuse_table(project_id, selectedBGs):
 #     matrix_omx(selectedBGs)
 
 
-def matrix_omx(project_id,selectedBGs):
+def matrix_omx(project_id,selectedBGs,folder):
     
     con = get_db_connection()
     cur = con.cursor()
@@ -290,7 +392,7 @@ def matrix_omx(project_id,selectedBGs):
                     '''
     distance_output = con.execute(distancesql).fetchall()
 
-    print("distance_output----------", distance_output[:10], ones[:10] )
+    # print("distance_output----------", distance_output[:10], ones[:10] )
 
 # trying some matrix test
 
@@ -312,55 +414,63 @@ def matrix_omx(project_id,selectedBGs):
         distancesTable[i, j] = d['distance']
 
     # Print array
-    print("distancesTable-------", distancesTable)
+    # print("distancesTable-------", distancesTable)
 
 
     # Create an OMX file (will overwrite existing file!)
-    print('Creating skim.omx')
-    skim = omx.open_file('skim.omx','w')   # use 'a' to append/edit an existing file
+    print('Creating skims.omx')
+    skims = omx.open_file(folder +'/output/activitysim_input/skims.omx','w')   # use 'a' to append/edit an existing file
 
     # Write to the file.
-    skim['distance'] = ones
-    skim['distance2'] = twos
-    skim['distance3'] = ones + twos 
-    skim['distance4'] = distancesTable        
+    skims['distance'] = ones
+    skims['distance2'] = twos
+    skims['distance3'] = ones + twos 
+    skims['distance4'] = distancesTable        
 
 
-    distance_data = skim['distance4'][:]
+    distance_data = skims['distance4'][:]
 
-    print("skim['distance4']", skim['distance4'], distance_data)
-
-
-# Create a pandas DataFrame with the new column and row names ( turns out no need)
-    df = pd.DataFrame(distance_data, columns=geoid_1, index=geoid_1)
-
-    print("DataFrame", df, df.dtypes)
+    print("skims['distance4']", skims['distance4'], distance_data)
+    # print ('Table names:----------', skims.list_matrices())   # ['distance','distance2',',distance3']
 
 
-    # skim['distance5'] = df 
+    # Create a pandas DataFrame with the new column and row names ( turns out no need)
+    # df = pd.DataFrame(distance_data, columns=geoid_1, index=geoid_1)
+    # print("DataFrame", df, df.dtypes)
+    # skims['distance5'] = df 
 
+    # Creating other 700 tables with names from prototype_mtc skims's names
+    prototype_skims = omx.open_file('popsynth_runs/test_prototype_mtc/data/skims.omx')
 
-    skim.close()
+    # print ('Table names_prototype_mtc:', prototype_skims.list_matrices())   # ['DIST', 'DISTBIKE', 'DISTWALK', 'DRV_COM_WLK_BOARDS__AM'...]
 
+    table_names_list =  prototype_skims.list_matrices()
+    
+    for i, name in enumerate(table_names_list):
+    # make new table names and write to the each table
+     skims[name]= distancesTable
+    #  print(name)
 
+    prototype_skims.close()
 
-
-
+    skims.close()
 
 
     # Open an OMX file for reading only
-    print('Reading skim.omx')
-    skim = omx.open_file('skim.omx')
+    print('Reading skims.omx')
+    skims = omx.open_file(folder +'/output/activitysim_input/skims.omx')
 
-    print ('Shape:', skim.shape())                 # (100,100)
-    print ('Number of tables:', len(skim))         # 3
-    print ('Table names:', skim.list_matrices())   # ['distance','distance2',',distance3']
+    print ('Shape:', skims.shape())                 # (100,100)
+    print ('Number of tables:', len(skims))         # 3
+    # print ('Table names:', skims.list_matrices())   # ['distance','distance2',',distance3']
+
+
 
     # Work with data. Pass a string to select matrix by name:
     # -------------------------------------------------------
-    distance = skim['distance']
-    distance2 = skim['distance2']
-    distance3 = skim['distance3']
+    distance = skims['distance']
+    distance2 = skims['distance2']
+    distance3 = skims['distance3']
 
     # halves = distance * 0.5  # CRASH!  Don't modify an OMX object directly.
     #                    # Create a new numpy array, and then edit it.
@@ -380,24 +490,24 @@ def matrix_omx(project_id,selectedBGs):
 
     # FANCY: Use attributes to find matrices
     # --------------------------------------
-    skim.close()                            # was opened read-only, so let's reopen.
-    skim = omx.open_file('skim.omx','a')  # append mode: read/write existing file
+    skims.close()                            # was opened read-only, so let's reopen.
+    skims = omx.open_file(folder +'/output/activitysim_input/skims.omx','a')  # append mode: read/write existing file
 
-    skim['distance'].attrs.timeperiod = 'am'
-    skim['distance'].attrs.mode = 'hwy'
+    skims['distance'].attrs.timeperiod = 'am'
+    skims['distance'].attrs.mode = 'hwy'
 
-    skim['distance2'].attrs.timeperiod = 'md'
+    skims['distance2'].attrs.timeperiod = 'md'
 
-    skim['distance3'].attrs.timeperiod = 'am'
-    skim['distance3'].attrs.mode = 'trn'
+    skims['distance3'].attrs.timeperiod = 'am'
+    skims['distance3'].attrs.mode = 'trn'
 
-    print('attributes:', skim.list_all_attributes())       # ['mode','timeperiod']
+    print('attributes:', skims.list_all_attributes())       # ['mode','timeperiod']
 
     # Use a DICT to select matrices via attributes:
 
-    all_am_trips = skim[ {'timeperiod':'am'} ]                    # [distance,distance3]
-    all_hwy_trips = skim[ {'mode':'hwy'} ]                        # [distance]
-    all_am_trn_trips = skim[ {'mode':'trn','timeperiod':'am'} ]   # [distance3]
+    all_am_trips = skims[ {'timeperiod':'am'} ]                    # [distance,distance3]
+    all_hwy_trips = skims[ {'mode':'hwy'} ]                        # [distance]
+    all_am_trn_trips = skims[ {'mode':'trn','timeperiod':'am'} ]   # [distance3]
 
     print('sum of some tables:', np.sum(all_am_trips))
 
@@ -408,15 +518,15 @@ def matrix_omx(project_id,selectedBGs):
 
     taz_equivs = np.arange(1,bg_counts+1)                  # 1-100 inclusive
 
-    skim.create_mapping('taz', taz_equivs)
-    print('mappings:', skim.list_mappings()) # ['taz']
+    skims.create_mapping('taz', taz_equivs)
+    print('mappings:', skims.list_mappings()) # ['taz']
 
-    tazs = skim.mapping('taz') # Returns a dict:  {1:0, 2:1, 3:2, ..., 100:99}
-    distance3 = skim['distance3']
+    tazs = skims.mapping('taz') # Returns a dict:  {1:0, 2:1, 3:2, ..., 100:99}
+    distance3 = skims['distance3']
     print('cell value:', distance3[tazs[bg_counts]][tazs[bg_counts]]) # 3.0  (taz (100,100) is cell [99][99])
     print('all table 3', distance3)
 
-    skim.close()
+    skims.close()
 
     # delete local folder
 

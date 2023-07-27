@@ -13,16 +13,29 @@ export const generateCrosswalk = (layer) => {
     let output = Object.keys(layer.state.selectedPumasBgs).map((key) => {
       // console.log("test---", key)
       return layer.state.selectedPumasBgs[key].map((bg) => {
-        // console.log("BLKGRP", bg);
+        // console.log(
+        //   "BLKGRP---------",
+        //   bg,
+        //   bg.toString().slice(5),
+        //   bg.slice(5).toString(),
+        //   bg.slice(5)
+        // );
         return {
-          BG: bg.slice(5).toString(), // to string
+          BG: bg.slice(5),
+          // BG: bg.slice(5).toString(), // to string
+          // BG: bg.toString().slice(5), // to string
+
           BLKGRP: bg,
           STATEFP: bg.slice(0, 2), //first 2 dgitsd of bg
+
           COUNTYFP: parseInt(bg.slice(2, 5)),
-          TRACTCE: parseInt(bg.slice(5, 11)),
+          // TRACTCE: parseInt(bg.slice(5, 11)),
+          TRACTCE: bg.slice(5, 11),
+
           GEOID: bg.slice(0, 11),
-          NAME: parseInt(bg.slice(5, 11)),
-          NAMELSAD: `Census Tract ${parseInt(bg.slice(5, 11))}`,
+          // NAME: parseInt(bg.slice(5, 11)),
+          NAME: bg.slice(5, 11),
+          NAMELSAD: `Census Tract ${bg.slice(5, 11)}`,
           PUMA: key.slice(3, 7),
           REGION: 1,
         };
@@ -122,6 +135,38 @@ export const generateSeedData = (layer, selectedVar) => {
         d.ptype = 7;
       } else if (d.AGEP <= 5 && d.SCHG === 1) {
         d.ptype = 8;
+      } else {
+        d.ptype = 4;
+      }
+    });
+
+    //adding pemploy to the person data
+    pdata.forEach((d) => {
+      if (d.ptype === 1) {
+        d.pemploy = 1;
+      } else if (d.ptype === 2) {
+        d.pemploy = 2;
+      } else if (d.ptype === 4 || d.ptype === 5) {
+        d.pemploy = 3;
+      } else if (d.ptype === 6 || d.ptype === 7 || d.ptype === 8) {
+        d.pemploy = 4;
+      } else {
+        d.pemploy = 3;
+      }
+    });
+
+    //adding pstudent to the person data
+    pdata.forEach((d) => {
+      if (d.ptype === 6 || d.ptype === 7 || d.ptype === 8) {
+        d.pstudent = 1;
+      } else if (d.ptype === 3) {
+        d.pstudent = 2;
+      } else if (d.ptype === 1 && d.pemploy === 1) {
+        d.pstudent = 3;
+      } else if (d.ptype === 1 && d.pemploy === 4) {
+        d.pstudent = 1;
+      } else {
+        d.pstudent = 3;
       }
     });
 
