@@ -126,7 +126,7 @@ class PopSynthLayer extends LayerContainer {
 
   onClick = {
     layers: ["PUMA"],
-    callback: (layerId, features, lngLat) => {
+    callback: async (layerId, features, lngLat) => {
       let { GEOID10, NAMELSAD10 } = features[0].properties;
 
       let selected = this.state.selectedPumas;
@@ -166,24 +166,28 @@ class PopSynthLayer extends LayerContainer {
           layers: ["PUMA"],
         })
         .filter((d) => this.state.selectedPumas.includes(d.properties.GEOID10));
-      console.log("selectedFeaturesPuma", selectedFeaturesPuma);
+      console.log(
+        "selectedFeaturesPuma",
+        selectedFeaturesPuma,
+        this.state.selectedPumas
+      );
 
       // 2.create turf puma geometries /////////////////////////////////////////////////////
-      let selectedFeaturesGeoidsPuma = selectedFeaturesPuma.map(
-        (d) => d.properties.GEOID10
-      );
+      // let selectedFeaturesGeoidsPuma = selectedFeaturesPuma.map(
+      //   (d) => d.properties.GEOID10
+      // );
 
-      let selectedFeaturesGeometryPuma = selectedFeaturesPuma.reduce(
-        (acc, feature) => {
-          acc[feature.properties.GEOID10] = feature;
-          return acc;
-        },
-        {}
-      );
+      // let selectedFeaturesGeometryPuma = selectedFeaturesPuma.reduce(
+      //   (acc, feature) => {
+      //     acc[feature.properties.GEOID10] = feature;
+      //     return acc;
+      //   },
+      //   {}
+      // );
 
-      let selectedFeaturesGeometryPumaOnly = Object.values(
-        selectedFeaturesGeometryPuma
-      );
+      // let selectedFeaturesGeometryPumaOnly = Object.values(
+      //   selectedFeaturesGeometryPuma
+      // );
 
       var featuresBgs = this.mapboxMap.queryRenderedFeatures({
         layers: ["BG"],
@@ -197,54 +201,94 @@ class PopSynthLayer extends LayerContainer {
       }, {});
 
       console.log("featuresGeometryBgs", featuresGeometryBgs);
-      console.time("reduceOverlap");
 
-      //reformat to get pumaID
+      // find BGs contained using turf and format {PUMA:[BGs], ... }
 
-      let PUMAandBgs = Object.values(selectedFeaturesPuma).reduce(
-        (acc, feature) => {
-          console.log("feature2", feature);
+      // let PUMAandBgs = Object.values(selectedFeaturesPuma).reduce(
+      //   (acc, feature) => {
+      //     console.log("feature2", feature);
 
-          let selectedBgIds = Object.keys(featuresGeometryBgs).reduce(
-            (acc, geoid) => {
-              // console.log('check bg', geoid, featuresGeometryBgs[geoid])
-              // //let polygon = turf.polygon(featuresGeometryBgs[geoid])
-              let results = turf.booleanPointInPolygon(
-                turf.centroid(featuresGeometryBgs[geoid]),
-                feature
-              );
+      //     let selectedBgIds = Object.keys(featuresGeometryBgs).reduce(
+      //       (acc, geoid) => {
+      //         // console.log('check bg', geoid, featuresGeometryBgs[geoid])
+      //         // //let polygon = turf.polygon(featuresGeometryBgs[geoid])
+      //         let results = turf.booleanPointInPolygon(
+      //           turf.centroid(featuresGeometryBgs[geoid]),
+      //           feature
+      //         );
 
-              if (results) {
-                feature.properties.GEOID10 = acc.push(geoid);
+      //         if (results) {
+      //           feature.properties.GEOID10 = acc.push(geoid);
 
-                // let selectedBgsIds =[]
-                // selectedBgsIds.push(geoid)
-                // acc[feature.properties.GEOID10] = selectedBgsIds.push(geoid)
-              }
-              return acc;
-            },
-            []
-          );
+      //           // let selectedBgsIds =[]
+      //           // selectedBgsIds.push(geoid)
+      //           // acc[feature.properties.GEOID10] = selectedBgsIds.push(geoid)
+      //         }
+      //         return acc;
+      //       },
+      //       []
+      //     );
 
-          acc[`${feature.properties.STATEFP10}${feature.properties.PUMACE10}`] =
-            selectedBgIds;
-          return acc;
-        },
-        {}
+      //     console.log("selectedBgIds---------", selectedBgIds);
+
+      //     acc[`${feature.properties.STATEFP10}${feature.properties.PUMACE10}`] =
+      //       selectedBgIds;
+      //     return acc;
+      //   },
+      //   {}
+      // );
+
+      //rewrite PUMAandBgs/turf with st_contains in sqlite
+
+      let selectedPumas = this.state.selectedPumas;
+
+      const host = "http://localhost:5000/";
+
+      const PUMAandBgs = selectedPumas.map((pumaId) => {
+        let url = `${host}projects/geometry/${pumaId}`;
+
+        console.log("url", url, pumaId);
+
+        return fetch(url)
+          .then((r) => r.json())
+          .then((d) => {
+            const PUMAandBgs = {};
+
+            PUMAandBgs[pumaId] = d;
+
+            // this.updateState({
+            //   selectedPumasBgs3: PUMAandBgs3,
+            // });
+            console.log("PUMAandBgs_d", d, PUMAandBgs);
+
+            return PUMAandBgs;
+          });
+      });
+
+      const PUMAandBGs1 = await Promise.all(PUMAandBgs).then((res) =>
+        res.reduce((acc, curr) => {
+          console.log("in reduce ", acc, curr);
+          return { ...acc, ...curr };
+        }, {})
       );
 
-      console.timeEnd("reduceOverlap");
+      console.log("PUMAandBgs1------>>", PUMAandBGs1);
 
-      let newContainsBgs = Object.values(PUMAandBgs).map((p) => p);
+      // ---------------------------
 
-      console.log("containsBgs", PUMAandBgs, flatten(newContainsBgs));
+      // let newContainsBgs = Object.values(PUMAandBgs).map((p) => p);
+      let newContainsBgs = Object.values(PUMAandBGs1).map((p) => p);
+
+      // let newContainsBgs1 = Object.values(PUMAandBgs1).map((p) => p);
+
+      console.log("containsBgs", flatten(newContainsBgs));
 
       this.updateState({
         selectedBlockGroups: flatten(newContainsBgs),
       });
 
       this.updateState({
-        selectedPumasBgs: PUMAandBgs,
+        selectedPumasBgs: PUMAandBGs1,
       });
 
       console.log("this.state.selectedPumasBgs", this.state.selectedPumasBgs);

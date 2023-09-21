@@ -69,6 +69,93 @@ def projectsByUser(userId):
     return jsonify(projects)
 
 
+@app.route('/projects/geometry/<selectedPUMA>')
+def selectedBGgeometry(selectedPUMA):
+    
+    con = get_db_connection()
+    cur = con.cursor()
+
+
+    # selectedBGsStr = ''.join(selectedBGs)
+    # selectedBGsStr ="'" + "','".join(selectedBGs) + "'"
+    # # print("selectedBGs",selectedBGs, len(selectedBGs))
+    # print("selectedBGsStr", selectedBGsStr,  len(selectedBGsStr))
+    print ("selectedPUMAGeoids---", selectedPUMA)
+
+# load specialite
+    con.enable_load_extension(True)
+
+    cur.execute(''' SELECT load_extension('/usr/local/lib/mod_spatialite')''')
+
+
+    selected_bg_table = f'''SELECT
+                        b.geoid as geoid_bg,
+                        a.geoid10 as geoid_puma
+                     
+                        FROM tl_2019_36_bg AS b
+                        INNER JOIN tl_2019_36_puma10 AS a
+                        ON 
+
+                            (ST_Contains(
+                                GeomFromWKB(a.geometry), GeomFromWKB(b.geometry)
+                                         )
+                                )
+                      
+                        WHERE  a.geoid10 in ('''+selectedPUMA+''')
+                        '''
+
+# need to swtich a and b 
+
+    # selected_bg_table = f'''SELECT
+    #                     a.geoid as geoid_bg,
+    #                     b.geoid10 as geoid_puma
+                     
+    #                     FROM tl_2019_36_bg AS a
+    #                     INNER JOIN tl_2019_36_puma10 AS b
+    #                     ON (
+
+    #                         (ST_Contains(
+    #                             GeomFromWKB(a.geometry), GeomFromWKB(b.geometry)
+    #                                      )
+    #                             )
+    #                         OR
+    #                         (
+    #                            st_intersects(
+    #                            GeomFromWKB(a.geometry), GeomFromWKB(b.geometry)
+    #                                         )
+    #                            and
+
+    #                         (
+    #                             (
+    #                                 st_area(
+    #                                     st_intersection(
+    #                                     GeomFromWKB(a.geometry), GeomFromWKB(b.geometry)
+    #                                                     )
+    #                                        )
+    #                                 /
+    #                                 st_area(GeomFromWKB(a.geometry))
+    #                             )
+    #                             >
+    #                             0.5
+    #                         )
+                            
+    #                        )
+    #                     )
+
+    #                     WHERE  b.geoid10 in ('''+selectedPUMA+''')
+                         
+    #                     '''
+
+    selectedBGsTable = con.execute(selected_bg_table).fetchall()
+    selectedBGs = [ sub['geoid_bg'] for sub in selectedBGsTable ]
+    return jsonify(selectedBGs)
+
+    print('selectedBGIDs----', selectedBGsTable, selectedBGs)
+
+    con.commit()
+    con.close()
+
+
 # status route to sequence the status
 @app.route('/project/<projectId>/status')
 def statusByProject(projectId):

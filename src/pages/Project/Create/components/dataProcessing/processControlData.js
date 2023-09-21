@@ -301,7 +301,7 @@ const generateControl = (crosswalkData, selectedVar, layer, falcor) => {
               PUMA: BgsPuma[geoId],
               REGION: 1,
               MAZ: i + 1,
-              xTAZ: geoId.slice(5, 11),
+              TAZ: geoId.slice(5, 11),
               HHBASE: binnedVarNamesValues[0]["HHBase_Bgs"],
               POPBASE: binnedVarNamesValues[0]["PopBase_Bgs"],
               ...binnedVarNamesValuesNewFinal,

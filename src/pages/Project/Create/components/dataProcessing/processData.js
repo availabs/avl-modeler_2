@@ -13,15 +13,18 @@ export const generateCrosswalk = (layer) => {
     let output = Object.keys(layer.state.selectedPumasBgs).map((key) => {
       // console.log("test---", key)
       return layer.state.selectedPumasBgs[key].map((bg) => {
-        // console.log(
-        //   "BLKGRP---------",
-        //   bg,
-        //   bg.toString().slice(5),
-        //   bg.slice(5).toString(),
-        //   bg.slice(5)
-        // );
+        console.log(
+          "BLKGRP---------",
+          bg,
+          bg.toString().slice(5),
+          bg.slice(5).toString(),
+          bg.slice(5),
+          `${bg.slice(5)}`
+        );
+
         return {
           BG: bg.slice(5),
+          // BG1: `${bg.slice(5)}`,
           // BG: bg.slice(5).toString(), // to string
           // BG: bg.toString().slice(5), // to string
 
@@ -99,11 +102,31 @@ export const generateSeedData = (layer, selectedVar) => {
 
     // b/c papa parse output = { data: [ ... ], errors: [ ... ], meta: {	... }}
 
-    console.log("api-return-seed data simple", hhdata, pdata);
+    console.log(
+      "api-return-seed data simple",
+      hhdata,
+      pdata,
+      hhdata.length,
+      pdata.length
+    );
+
+    //filter out np = 0 ( vacant houses)
+
+    let hhdata1 = hhdata.filter((obj) => obj.NP !== "0");
 
     let hhindex = 1;
 
-    let hhnumLookup = hhdata.reduce((lookup, hh) => {
+    // let hhnumLookup = hhdata.reduce((lookup, hh) => {
+    //   if (!lookup[hh.SERIALNO]) {
+    //     lookup[hh.SERIALNO] = hhindex;
+    //     hh.hhnum = hhindex;
+    //     hhindex += 1;
+    //   }
+    //   hh.hhnum = lookup[hh.SERIALNO];
+    //   return lookup;
+    // }, {});
+
+    let hhnumLookup = hhdata1.reduce((lookup, hh) => {
       if (!lookup[hh.SERIALNO]) {
         lookup[hh.SERIALNO] = hhindex;
         hh.hhnum = hhindex;
@@ -113,9 +136,31 @@ export const generateSeedData = (layer, selectedVar) => {
       return lookup;
     }, {});
 
-    console.log("after hhnum", hhdata, hhnumLookup);
+    //  filterout np=0 from hhdata
+    // var hhdata1 = hhdata.filter((obj) => obj.NP !== "1");
+    // var hhIDs = hhdata1.map((obj) => obj.hhnum);
+
+    console.log(
+      "after hhnum and filter ",
+      hhdata,
+      hhnumLookup,
+      Object.keys(hhnumLookup).length,
+      hhdata1,
+      hhdata1.length,
+      hhdata.length
+      // hhIDs,
+      // hhIDs.length
+    );
+    hhdata = hhdata1;
+
+    //need to filter pdata with new hhnum IDs..what is the most efficient way to archieve them?
 
     pdata.forEach((d) => (d.hhnum = hhnumLookup[d.SERIALNO])); // better than .map b/c no need to return
+
+    // let pdata1 = pdata.filter((p) => p.hhnum);
+    pdata = pdata.filter((p) => p.hhnum);
+
+    console.log("after pdata filter ", pdata.length);
 
     //adding ptype to the person data
     pdata.forEach((d) => {
@@ -172,7 +217,7 @@ export const generateSeedData = (layer, selectedVar) => {
 
     // let test = pdata.map(d => d.hhnum = hhnumLookup[d.SERIALNO] )
 
-    console.log("after p.hhnum", pdata);
+    console.log("after p.student", pdata, pdata.length);
 
     //console.log('seedPdata----', pdata,pdata[0], flatten(pdata), newpdata, test)
     //console.log('seedData_flatten' ,flatten(hhdata), pdata[0], flatten(pdata)),
