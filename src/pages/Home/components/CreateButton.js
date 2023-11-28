@@ -25,7 +25,7 @@ export default function CreateButton({ user }) {
           </Link>
         </div>
       </div>
-      {open ? "true" : "false"}
+      {/* {open ? "true" : "false"} */}
       {/* <CreateModal open={open} setOpen={setOpen} user={user} /> */}
     </>
   );

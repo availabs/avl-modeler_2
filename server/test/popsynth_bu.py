@@ -25,7 +25,7 @@ import subprocess
 # import psycopg2
 
 
-queue = rq.Queue('rq_popsynth', connection=Redis(), default_timeout=600)
+queue = rq.Queue('rq_popsynth', connection=Redis())
 # s_queue =rq.Queue('rq_activitysim', connection=Redis())
 
 
@@ -65,7 +65,7 @@ def run_senario(args, project_id, senario_id):
 
 
         job = queue.enqueue('tasks.popsynth.load_senario_run',
-                            folder_path, project_id, senario_id, job_timeout=3600)
+                            folder_path, project_id, senario_id)
 
        
 
@@ -93,80 +93,80 @@ def load_senario_run(folder, project_id, senario_id):
 
     # load activitysim data to sqlite
 
-    print("path", folder + 'output')
+    print("path", folder + '/output')
 
-    df_trips = pd.read_csv(folder + '/output/final_trips.csv', sep=',',
-                             error_bad_lines=False, index_col=False, dtype='unicode')
+    # df_trips = pd.read_csv(folder + '/output/final_trips.csv', sep=',',
+    #                          error_bad_lines=False, index_col=False, dtype='unicode')
 
-    df_persons = pd.read_csv(folder + '/output/final_persons.csv', sep=',',
-                             error_bad_lines=False, index_col=False, dtype='unicode')
+    # df_persons = pd.read_csv(folder + '/output/final_persons.csv', sep=',',
+    #                          error_bad_lines=False, index_col=False, dtype='unicode')
 
-    df_households = pd.read_csv(folder + '/output/final_households.csv', sep=',',
-                                error_bad_lines=False, index_col=False, dtype='unicode')
+    # df_households = pd.read_csv(folder + '/output/final_households.csv', sep=',',
+    #                             error_bad_lines=False, index_col=False, dtype='unicode')
 
-    df_landuse = pd.read_csv(folder + '/output/final_land_use.csv', sep=',',
-                                  error_bad_lines=False, index_col=False, dtype='unicode')
+    # df_landuse = pd.read_csv(folder + '/output/final_land_use.csv', sep=',',
+    #                               error_bad_lines=False, index_col=False, dtype='unicode')
     
 
-    # strip whitespace from headers
+    # # strip whitespace from headers
     # df_trips.columns = df_trips.columns.str.strip()
     # df_persons.columns = df_persons.columns.str.strip()
     # df_households.columns = df_households.columns.str.strip()
     # df_landuse.columns = df_landuse.columns.str.strip()
 
-    # drop data into database
-    # df.to_sql("project_datadict", con)
-
-    con = get_db_connection()
-    cur = con.cursor()
-
-    df_trips.to_sql("senario_"+senario_id+"_trips", con)
-    df_persons.to_sql("senario_"+senario_id+"_persons", con)
-    df_households.to_sql("senario_"+senario_id+"_households", con)
-    df_landuse.to_sql("senario_"+senario_id+"_landuse", con)
-
-# Try chuck 
-
-# one thing at a time
-
+    # # drop data into database
+    # # df.to_sql("project_datadict", con)
 
     # con = get_db_connection()
     # cur = con.cursor()
 
-    # df_trips_chunks = pd.read_csv(folder + 'output/final_trips.csv', sep=',',
-    #                          error_bad_lines=False, index_col=False, dtype='unicode', chunksize=1000)
+    # df_trips.to_sql("senario_"+senario_id+"_trips", con)
+    # df_persons.to_sql("senario_"+senario_id+"_persons", con)
+    # df_households.to_sql("senario_"+senario_id+"_households", con)
+    # df_landuse.to_sql("senario_"+senario_id+"_landuse", con)
+
+# 
+    # chunks = pd.read_csv('filename.csv', chunksize=100000)
+# for chunk in chunks:
+#     chunk.to_sql(name='table', if_exist='append', con=con)
+# one thing at a time
+
+   # strip whitespace from headers
+    df_trips_chunks.columns = df_trips_chunks.columns.str.strip()
+    df_persons_chunks.columns = df_persons_chunks.columns.str.strip()
+    df_households_chunks.columns = df_households_chunks.columns.str.strip()
+    df_landuse_chunks.columns = df_landuse_chunks.columns.str.strip()
+
+    # drop data into database
+    # df.to_sql("project_datadict", con)
+
+
+    con = get_db_connection()
+    cur = con.cursor()
+
+    df_trips_chunks = pd.read_csv(folder + '/output/final_trips.csv', sep=',',
+                             error_bad_lines=False, index_col=False, dtype='unicode', chunksize=1000)
+    for chunk in df_trips_chunks:
+        chunk.to_sql(name="senario_"+senario_id+"_trips", if_exist='append', con=con)
+
+
+    df_persons_chunks = pd.read_csv(folder + '/output/final_persons.csv', sep=',',
+                             error_bad_lines=False, index_col=False, dtype='unicode', chunksize=1000)
+    for chunk in df_persons_chunks:
+        chunk.to_sql(name="senario_"+senario_id+"_persons", if_exist='append', con=con)
+
+
+    df_households_chunks = pd.read_csv(folder + '/output/final_households.csv', sep=',',
+                                error_bad_lines=False, index_col=False, dtype='unicode', chunksize=1000)
+    for chunk in df_households_chunks:
+        chunk.to_sql(name="senario_"+senario_id+"_households", if_exist='append', con=con)
+
+
+    df_landuse_chunks = pd.read_csv(folder + '/output/final_land_use.csv', sep=',',
+                                  error_bad_lines=False, index_col=False, dtype='unicode', chunksize=1000)
+    for chunk in df_landuse_chunks:
+        chunk.to_sql(name="senario_"+senario_id+"_landuse", if_exist='append', con=con)
     
-    # # df_trips_chunks.columns = df_trips_chunks.columns.str.strip()
-
-    # for chunk in df_trips_chunks:
-    #     chunk.to_sql(name="senario_"+senario_id+"_trips", if_exists='append', con=con)
-
-
-    # df_persons_chunks = pd.read_csv(folder + 'output/final_persons.csv', sep=',',
-    #                          error_bad_lines=False, index_col=False, dtype='unicode', chunksize=1000)
-    # # df_persons_chunks.columns = df_persons_chunks.columns.str.strip()
-    # for chunk in df_persons_chunks:
-    #     chunk.to_sql(name="senario_"+senario_id+"_persons", if_exists='append', con=con)
-
-
-    # df_households_chunks = pd.read_csv(folder + 'output/final_households.csv', sep=',',
-    #                             error_bad_lines=False, index_col=False, dtype='unicode', chunksize=100)
-    # # df_households_chunks.columns = df_households_chunks.columns.str.strip()
-    # for chunk in df_households_chunks:
-    #     chunk.to_sql(name="senario_"+senario_id+"_households", if_exists='append', con=con)
-
-
-
-    # df_landuse_chunks = pd.read_csv(folder + 'output/final_land_use.csv', sep=',',
-    #                               error_bad_lines=False, index_col=False, dtype='unicode', chunksize=100)
-    # # df_landuse_chunks.columns = df_landuse_chunks.columns.str.strip()
-    # for chunk in df_landuse_chunks:
-    #     chunk.to_sql(name="senario_"+senario_id+"_landuse", if_exists='append', con=con)
-    
-
- 
-
-
 
 # using odo
     # odo('myfile.*.csv', 'postgresql://hostname::tablename')
@@ -199,7 +199,7 @@ def run_popsynth(args, project_id, selectedBGs):
     try:
         run(args)
         job = queue.enqueue('tasks.popsynth.load_popsynth_run',
-                            args.working_dir, project_id, selectedBGs, job_timeout=3600)
+                            args.working_dir, project_id, selectedBGs)
         
         print('Task completed')
     except:

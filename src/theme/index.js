@@ -201,6 +201,17 @@ const ppdaf = () => {
       };
     },
 
+    tabpanel: () => {
+      return {
+        tabpanelWrapper: "",
+        tabWrapper: "flex flex-wrap",
+        tabActive: "p-1 bg-blue-100 hover:bg-blue-200",
+        tab: "p-1 hover:bg-blue-50",
+        tabName: "",
+        contentWrapper: "border-2",
+      };
+    },
+
     /* ------------------------- */
     shadow: "shadow",
     ySpace: "py-4",

@@ -17,17 +17,13 @@ import numpy as np
 import pandas as pd
 import csv
 import random
-import subprocess
-# from odo import odo
 
 
 
 # import psycopg2
 
 
-queue = rq.Queue('rq_popsynth', connection=Redis(), default_timeout=600)
-# s_queue =rq.Queue('rq_activitysim', connection=Redis())
-
+queue = rq.Queue('rq_popsynth', connection=Redis())
 
 def get_db_connection():
     conn = sqlite3.connect('database/activitysimserver.sqlite')
@@ -45,152 +41,14 @@ def row_to_dict(cursor: sqlite3.Cursor, row: sqlite3.Row) -> dict:
 # curpostgres = conpostgres.cursor()
 
 
+# def run_popsynth(args,project_id):
+#     print('Starting task')
+#     print('task args test', args)
+#     run(args)
+#     print('Task completed')
+#     job = queue.enqueue('tasks.popsynth.load_popsynth_run',args.working_dir, project_id)
 
-def run_senario(args, project_id, senario_id):
-    print('Starting activitysim run')
-    print('activitysim run args test', args)
-    # run(args)
-
-    try:
-        # folder_path = args.working_dir
-        # os.chdir(os.path.expanduser(folder_path))
-
-        folder_path = args.working_dir
-        os.chdir(folder_path)
-        
-        # # Run the activitysim command
-        command = "activitysim run -c configs -d data -o output"
-        subprocess.run(command, shell=True, capture_output=True, text=True)
-        # result = subprocess.run(command, shell=True, capture_output=True, text=True )
-
-
-        job = queue.enqueue('tasks.popsynth.load_senario_run',
-                            folder_path, project_id, senario_id, job_timeout=3600)
-
-       
-
-        print('Task completed')
-        return "activitySim run successful"
-        
-    except:
-
-
-        con = get_db_connection()
-        cur = con.cursor()
-        status = "failed"
-        # cur = con.cursor()
-        cur.execute('''UPDATE senarios SET status = ? WHERE id = ?''',
-                    (status, senario_id))
-
-        con.commit()
-        con.close()
-
-    #   return "failed status inserted"
-        print('activitysim run failed')
-
-
-def load_senario_run(folder, project_id, senario_id):
-
-    # load activitysim data to sqlite
-
-    print("path", folder + 'output')
-
-    df_trips = pd.read_csv(folder + '/output/final_trips.csv', sep=',',
-                             error_bad_lines=False, index_col=False, dtype='unicode')
-
-    df_persons = pd.read_csv(folder + '/output/final_persons.csv', sep=',',
-                             error_bad_lines=False, index_col=False, dtype='unicode')
-
-    df_households = pd.read_csv(folder + '/output/final_households.csv', sep=',',
-                                error_bad_lines=False, index_col=False, dtype='unicode')
-
-    df_landuse = pd.read_csv(folder + '/output/final_land_use.csv', sep=',',
-                                  error_bad_lines=False, index_col=False, dtype='unicode')
-    
-
-    # strip whitespace from headers
-    # df_trips.columns = df_trips.columns.str.strip()
-    # df_persons.columns = df_persons.columns.str.strip()
-    # df_households.columns = df_households.columns.str.strip()
-    # df_landuse.columns = df_landuse.columns.str.strip()
-
-    # drop data into database
-    # df.to_sql("project_datadict", con)
-
-    con = get_db_connection()
-    cur = con.cursor()
-
-    df_trips.to_sql("senario_"+senario_id+"_trips", con)
-    df_persons.to_sql("senario_"+senario_id+"_persons", con)
-    df_households.to_sql("senario_"+senario_id+"_households", con)
-    df_landuse.to_sql("senario_"+senario_id+"_landuse", con)
-
-# Try chuck 
-
-# one thing at a time
-
-
-    # con = get_db_connection()
-    # cur = con.cursor()
-
-    # df_trips_chunks = pd.read_csv(folder + 'output/final_trips.csv', sep=',',
-    #                          error_bad_lines=False, index_col=False, dtype='unicode', chunksize=1000)
-    
-    # # df_trips_chunks.columns = df_trips_chunks.columns.str.strip()
-
-    # for chunk in df_trips_chunks:
-    #     chunk.to_sql(name="senario_"+senario_id+"_trips", if_exists='append', con=con)
-
-
-    # df_persons_chunks = pd.read_csv(folder + 'output/final_persons.csv', sep=',',
-    #                          error_bad_lines=False, index_col=False, dtype='unicode', chunksize=1000)
-    # # df_persons_chunks.columns = df_persons_chunks.columns.str.strip()
-    # for chunk in df_persons_chunks:
-    #     chunk.to_sql(name="senario_"+senario_id+"_persons", if_exists='append', con=con)
-
-
-    # df_households_chunks = pd.read_csv(folder + 'output/final_households.csv', sep=',',
-    #                             error_bad_lines=False, index_col=False, dtype='unicode', chunksize=100)
-    # # df_households_chunks.columns = df_households_chunks.columns.str.strip()
-    # for chunk in df_households_chunks:
-    #     chunk.to_sql(name="senario_"+senario_id+"_households", if_exists='append', con=con)
-
-
-
-    # df_landuse_chunks = pd.read_csv(folder + 'output/final_land_use.csv', sep=',',
-    #                               error_bad_lines=False, index_col=False, dtype='unicode', chunksize=100)
-    # # df_landuse_chunks.columns = df_landuse_chunks.columns.str.strip()
-    # for chunk in df_landuse_chunks:
-    #     chunk.to_sql(name="senario_"+senario_id+"_landuse", if_exists='append', con=con)
-    
-
- 
-
-
-
-# using odo
-    # odo('myfile.*.csv', 'postgresql://hostname::tablename')
-
-
-    # update status in senario table
-    status = "complete"
-    # cur = con.cursor()
-    cur.execute('''UPDATE senarios SET status = ? WHERE id = ? AND project_id = ? ''',
-                (status, senario_id, project_id))
-
-    print("project Table's status: ")
-    data = cur.execute(
-        '''SELECT status FROM senarios WHERE id = ? AND project_id = ?''', (senario_id, project_id,))
-    for row in data:
-        print("senario status of", project_id, "_", senario_id, "is", row)
-
-    # conn.execute("CREATE TABLE students"+project_id+'datadict"(name TEXT, addr TEXT, city TEXT, pin TEXT)')
-
-    con.commit()
-    con.close()
-
-
-    return "activitySim outputs succeefully inserted to database"
+#     return "PopSynth run completed"
 
 
 def run_popsynth(args, project_id, selectedBGs):
@@ -199,8 +57,7 @@ def run_popsynth(args, project_id, selectedBGs):
     try:
         run(args)
         job = queue.enqueue('tasks.popsynth.load_popsynth_run',
-                            args.working_dir, project_id, selectedBGs, job_timeout=3600)
-        
+                            args.working_dir, project_id, selectedBGs)
         print('Task completed')
     except:
         # this code currently never runs because run function doesn't raise exception on failure
@@ -216,7 +73,7 @@ def run_popsynth(args, project_id, selectedBGs):
         con.commit()
         con.close()
 
-        return "failed status inserted"
+    #   return "failed status inserted"
         print('PopSynth run failed')
 
 
@@ -406,26 +263,18 @@ def create_landuse_table(project_id, selectedBGs,folder):
 
 
     # using Pondas creating csv file --much simpler 
-    # activitySimInputPath = '/home/jin/AVAIL/code/activitysim/activitysim/activitysim_new/activitysim/activitysim/examples/test_prototype_mtc_new/data/'
-    activitySimInputPath = '/home/jin/AVAIL/code/avl-modeler2/server/popsynth_runs/test_prototype_mtc_new/data/'
-    # activitySimInputPath = '/home/jin/AVAIL/code/avl-modeler2/server/popsynth_runs/activitysim/activitysim/examples/test_prototype_mtc_new/data/'
-
-
     path = folder + '/output/' 
     os.makedirs(os.path.join(path, 'activitysim_input/'))
-    # os.makedirs(os.path.join(activitySimInputPath, 'activitysim_input/'))
-
 
     df = pd.DataFrame(landuse_data)
     df.to_csv(path + 'activitysim_input/land_use.csv', index=False)
-    df.to_csv(activitySimInputPath + 'land_use.csv', index=False)
 
+   
 
     dfh = pd.DataFrame(households_data)
     dfh = dfh.loc[dfh["NP"] != "0"]
     dfh.fillna(0, inplace=True)
     dfh.to_csv(path + 'activitysim_input/households.csv', index=False)
-    dfh.to_csv(activitySimInputPath + 'households.csv', index=False)
 
 
     dfp = pd.DataFrame(persons_data)
@@ -451,8 +300,6 @@ def create_landuse_table(project_id, selectedBGs,folder):
     dfp.fillna(2, inplace=True)
 
     dfp.to_csv(path + 'activitysim_input/persons.csv', index=False)
-    dfp.to_csv(activitySimInputPath + 'persons.csv', index=False)
-    
 
 
 
@@ -626,13 +473,8 @@ def matrix_omx(project_id,selectedBGs,folder):
     # print("distancesTable-------", distancesTable)
 
     # Create an OMX file (will overwrite existing file!)
-    # activitySimInputPath = '/home/jin/AVAIL/code/activitysim/activitysim/activitysim_new/activitysim/activitysim/examples/test_prototype_mtc_new/data/'    
-  
-    activitySimInputPath = '/home/jin/AVAIL/code/avl-modeler2/server/popsynth_runs/test_prototype_mtc_new/data/'
-    # activitySimInputPath = '/home/jin/AVAIL/code/avl-modeler2/server/popsynth_runs/activitysim/activitysim/examples/test_prototype_mtc_new/data/'
-    
-    # skims = omx.open_file(folder +'/output/activitysim_input/skims.omx','w')   # use 'a' to append/edit an existing file
-    skims = omx.open_file(activitySimInputPath +'skims.omx','w')
+    skims = omx.open_file(folder +'/output/activitysim_input/skims.omx','w')   # use 'a' to append/edit an existing file
+
     # Write to the file.
 
     # skims['distance4'] = distancesTable
@@ -710,4 +552,3 @@ def matrix_omx(project_id,selectedBGs,folder):
     prototype_skims.close()
 
     skims.close()
-

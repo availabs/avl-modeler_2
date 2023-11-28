@@ -160,7 +160,7 @@ const DataGenerator = ({ layer, user }) => {
                         Create New Project{" "}
                       </Dialog.Title> */}
                       <h3 className="text-lg font-medium text-white">
-                        Create New Project (New)
+                        Create New Project
                       </h3>
                       <div className="ml-3 flex h-7 items-center">
                         <button

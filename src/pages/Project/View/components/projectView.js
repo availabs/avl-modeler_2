@@ -14,8 +14,6 @@ const ProjectView = ({ projectId, selectedBlockGroups, layer }) => {
     light: "#aaa",
   };
 
-  let [projectData, setProjectData] = useState({ Households: [], Persons: [] });
-
   let [overviewProject, setOverviewProject] = useState({
     Households: 0,
     Persons: 0,
@@ -100,7 +98,7 @@ const ProjectView = ({ projectId, selectedBlockGroups, layer }) => {
             color: colors.primary,
           }}
         >
-          Overview Project: {projectId}
+          Project View: {projectId}
         </div>
         <div>
           {/* <h3 className="mt-6 text-gray-900 text-sm font-medium">

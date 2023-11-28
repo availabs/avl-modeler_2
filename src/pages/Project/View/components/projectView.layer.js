@@ -1,8 +1,10 @@
 import { LayerContainer } from "modules/avl-map/src";
+import { TabPanel } from "modules/avl-components/src";
 import React from "react";
 import flatten from "lodash.flatten";
 import mapboxgl from "mapbox-gl";
 import ProjectView from "./projectView";
+import SenarioView from "./senarioView";
 
 const HOST = "http://localhost:5000";
 
@@ -17,7 +19,7 @@ class PopSynthLayer extends LayerContainer {
     coordinates: [],
     selectedBlockGroups: [],
   };
-
+  id = "layer-id";
   // selectedBGs = this.state.selectedBlockGroups;
 
   sources = [
@@ -54,8 +56,8 @@ class PopSynthLayer extends LayerContainer {
       source: "bgs",
       type: "fill",
       paint: {
-        "fill-color": "red",
-        "fill-opacity": 0.3,
+        "fill-color": "gray",
+        "fill-opacity": 1,
         "fill-outline-color": "red",
       },
       filter: ["in", "GEOID", ""],
@@ -67,8 +69,8 @@ class PopSynthLayer extends LayerContainer {
       source: "bgs",
       type: "line",
       paint: {
-        "line-color": "yellow",
-        "line-width": 2,
+        "line-color": "gray",
+        "line-width": 0.1,
       },
       filter: ["in", "GEOID", ""],
     },
@@ -98,15 +100,31 @@ class PopSynthLayer extends LayerContainer {
       Component: ({ layer }) => {
         return React.useMemo(
           () => (
-            <div>
-              {
-                <ProjectView
-                  projectId={layer.projectId}
-                  layer={layer}
-                  selectedBlockGroups={layer.state.selectedBlockGroups}
-                />
-              }
-            </div>
+            <TabPanel
+              tabs={[
+                {
+                  name: "Project View",
+                  Component: () => (
+                    <ProjectView
+                      projectId={layer.projectId}
+                      layer={layer}
+                      selectedBlockGroups={layer.state.selectedBlockGroups}
+                    />
+                  ),
+                },
+                {
+                  name: "Scenario View",
+                  Component: () => (
+                    <SenarioView
+                      projectId={layer.projectId}
+                      layer={layer}
+                      selectedBlockGroups={layer.state.selectedBlockGroups}
+                      onGetColors={(colors) => this.updateState({ colors })}
+                    />
+                  ),
+                },
+              ]}
+            />
           ),
           [layer.state.selectedBlockGroups]
         );
@@ -159,14 +177,21 @@ class PopSynthLayer extends LayerContainer {
         ...this.state.selectedBlockGroups,
       ]);
 
-      this.mapboxMap.setFilter("BG-highlight", [
-        "in",
-        "GEOID",
-        ...this.state.selectedBlockGroups,
-      ]);
+      // this.mapboxMap.setFilter("BG-highlight", [
+      //   "in",
+      //   "GEOID",
+      //   ...this.state.selectedBlockGroups,
+      // ]);
+
       // console.log("selectedBGs----", selectedBGs);
       // return [[GEOID]];
       // return [[NAMELSAD10], ["geoid_hover", GEOID10]];
+
+      // this.mapboxMap.setPaintProperty("BG-highlight", "fill-color", [
+      //   "get",
+      //   ["to-string", ["get", "GEOID"]],
+      //   ["literal", this.state.colors],
+      // ]);
     },
   };
 
@@ -222,8 +247,11 @@ class PopSynthLayer extends LayerContainer {
   //   }
 
   render(map) {
+    console.log("state--", this.state);
+
     // set filter on layer to only show geometry ids
     if (this.state.pumasGeometryIds) {
+      // if (this.state.selectedBlockGroups) {
       map.setFilter("PUMA-show", [
         "in",
         "GEOID10",
@@ -232,11 +260,25 @@ class PopSynthLayer extends LayerContainer {
 
       map.setFilter("BG", ["in", "GEOID", ...this.state.bgsGeometryIds]);
 
-      // map.setFilter("BG-highlight", [
-      //   "in",
-      //   "GEOID",
-      //   ...this.state.selectedBlockGroups,
+      map.setFilter("BG-highlight", [
+        "in",
+        "GEOID",
+        ...this.state.selectedBlockGroups,
+      ]);
+
+      map.setPaintProperty("BG-highlight", "fill-color", [
+        "get",
+        ["to-string", ["get", "GEOID"]],
+        ["literal", this.state.colors],
+      ]);
+
+      // map.setPaintProperty("BG-highlight", "fill-color", [
+      //   "get",
+      //   ["to-string", ["get", "GEOID"]],
+      //   ["literal", this.state.colors],
       // ]);
+
+      // map.setPaintProperty("BG-highlight", "fill-color", this.state.colors);
 
       //getting the geometry
       map.on("render", () => {

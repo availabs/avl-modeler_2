@@ -16,6 +16,7 @@ import numpy as np
 
 import pandas as pd
 import csv
+import random
 
 
 
@@ -375,11 +376,6 @@ def matrix_omx(project_id,selectedBGs,folder):
     con = get_db_connection()
     cur = con.cursor()
 
-    # Create some data
-    # bg_counts =   len(selectedBGs)
-    # ones = np.ones((bg_counts,bg_counts))
-    # twos = 2.0*ones
-
     # selectedBGsStr = ''.join(selectedBGs)
     selectedBGsStr ="'" + "','".join(selectedBGs) + "'"
     # print("selectedBGs",selectedBGs, len(selectedBGs))
@@ -420,7 +416,7 @@ def matrix_omx(project_id,selectedBGs,folder):
     geoid_1 = np.unique([d['geoid_1'] for d in distance_output])
     geoid_2 = np.unique([d['geoid_2'] for d in distance_output])
 
-    # Create new array filled with ones
+    # Create new matrix table based on length
     distancesTable = np.ones((len(geoid_1), len(geoid_2)))
 
     # by timeperiod how to change distance?? not speed...
@@ -430,10 +426,8 @@ def matrix_omx(project_id,selectedBGs,folder):
     pmTravelTimeTable = np.ones((len(geoid_1), len(geoid_2)))
     evTravelTimeTable = np.ones((len(geoid_1), len(geoid_2)))
   
-    #by mode
 
-
-    # Fill in distances from input array
+    # Fill in new data- distances/travel times from input array
     for d in distance_output:
 
         ea_speed = 55
@@ -441,6 +435,9 @@ def matrix_omx(project_id,selectedBGs,folder):
         pm_speed = 30
         md_speed = 45
         ev_speed = 50
+        
+        r_num = random.uniform(0.1, 0.3)
+       
 
         ea_travel_time = d['distance']*100/ea_speed
         am_travel_time = d['distance']*100/am_speed
@@ -452,55 +449,40 @@ def matrix_omx(project_id,selectedBGs,folder):
         j = np.where(geoid_2 == d['geoid_2'])[0][0]
         # distancesTable[i, j] = d['distance']*1000000
         # distancesTable[i, j] = d['distance']
-        distancesTable[i, j] = d['distance']*100
-        eaTravelTimeTable[i, j] = ea_travel_time*1000
-        amTravelTimeTable[i, j] = am_travel_time*1000
-        mdTravelTimeTable[i, j] = md_travel_time*1000
-        pmTravelTimeTable[i, j] = pm_travel_time*1000
-        evTravelTimeTable[i, j] = ev_travel_time*1000
-        
-        
-        # working version backup -very small values
-        # ea_travel_time = d['distance']*10/ea_speed
-        # am_travel_time = d['distance']*10/am_speed
-        # pm_travel_time = d['distance']*10/pm_speed
-        # md_travel_time = d['distance']*10/md_speed
-        # ev_travel_time = d['distance']*10/ev_speed
 
-        # i = np.where(geoid_1 == d['geoid_1'])[0][0]
-        # j = np.where(geoid_2 == d['geoid_2'])[0][0]
-        # # distancesTable[i, j] = d['distance']*1000000
-        # # distancesTable[i, j] = d['distance']
-        # distancesTable[i, j] = d['distance']*10
-        # eaTravelTimeTable[i, j] = ea_travel_time
-        # amTravelTimeTable[i, j] = am_travel_time
-        # mdTravelTimeTable[i, j] = md_travel_time
-        # pmTravelTimeTable[i, j] = pm_travel_time
-        # evTravelTimeTable[i, j] = ev_travel_time
-    
-    
+  # modify distanceTable[i,j] if distance =0 then assign .1 or .2
+#   if d['distance'] = 0 then random .2 or .1
+        distancesTable[i, j] = d['distance']*10
+
+        if d['distance'] == 0:
+
+            distancesTable[i, j] = r_num
+      
+
+      
+
+        #byTravelTime
+        eaTravelTimeTable[i, j] = ea_travel_time*10000
+        amTravelTimeTable[i, j] = am_travel_time*10000
+        mdTravelTimeTable[i, j] = md_travel_time*10000
+        pmTravelTimeTable[i, j] = pm_travel_time*10000
+        evTravelTimeTable[i, j] = ev_travel_time*10000
+      
 
     # Print array
     # print("distancesTable-------", distancesTable)
 
-
     # Create an OMX file (will overwrite existing file!)
-    print('Creating skims.omx')
     skims = omx.open_file(folder +'/output/activitysim_input/skims.omx','w')   # use 'a' to append/edit an existing file
 
     # Write to the file.
-    # skims['distance'] = ones
-    # skims['distance2'] = twos
-    # skims['distance3'] = ones + twos 
-    skims['distance4'] = distancesTable
-    skims['eatraveltime'] = eaTravelTimeTable
-    skims['amtraveltime'] = amTravelTimeTable    
- 
 
+    # skims['distance4'] = distancesTable
+    # skims['eatraveltime'] = eaTravelTimeTable
+    # skims['amtraveltime'] = amTravelTimeTable    
+    # distance_data = skims['distance4'][:]
 
-    distance_data = skims['distance4'][:]
-
-    print("skims['distance4']", skims['distance4'], distance_data)
+    # print("skims['distance4']", skims['distance4'], distance_data)
     # print ('Table names:----------', skims.list_matrices())   # ['distance','distance2',',distance3']
 
 
@@ -512,137 +494,61 @@ def matrix_omx(project_id,selectedBGs,folder):
     # Creating other 700 tables with names from prototype_mtc skims's names
     prototype_skims = omx.open_file('popsynth_runs/test_prototype_mtc/data/skims.omx')
 
-    # print ('Table names_prototype_mtc:', prototype_skims.list_matrices())   # ['DIST', 'DISTBIKE', 'DISTWALK', 'DRV_COM_WLK_BOARDS__AM'...]
+    # print ('Table names_prototype_mtc:', prototype_skims.list_matrices())   
+    # # ['DIST', 'DISTBIKE', 'DISTWALK', 'DRV_COM_WLK_BOARDS__AM'...]
 
     table_names_list =  prototype_skims.list_matrices()
     
     for i, name in enumerate(table_names_list):
     # make new table names and write to the each table
- 
-    #  adding attribute
-    # timeperiod 
+
+    # travelTime by time period 
      if "EA" in name:
     #     #  skims[name].attrs.timeperiod = 'ea'
-        if "SOV" or "HOV" in name:
-         skims[name]= eaTravelTimeTable/100
+        if any([x in name for x in ["SOV", "HOV" ]]):
+        # if "SOV" or "HOV" in name:
+         skims[name]= eaTravelTimeTable/1000
         else:
          skims[name]= eaTravelTimeTable
 
      elif "AM" in name:
-         if "SOV" or "HOV" in name:
-          skims[name]= amTravelTimeTable/100
-         else:
         #  skims[name].attrs.timeperiod = 'am'
-          skims[name]= amTravelTimeTable
-     elif "MD" in name:
-         if "SOV" or "HOV" in name:
-          skims[name]= mdTravelTimeTable/100
-         else:
-        #  skims[name].attrs.timeperiod = 'md'
-          skims[name]= mdTravelTimeTable
-     elif "PM" in name:
-         if "SOV" or "HOV" in name:
-          skims[name]= pmTravelTimeTable/100
-         else:        #  skims[name].attrs.timeperiod = 'pm'
-          skims[name]= pmTravelTimeTable
-     elif "EV" in name:
-         if "SOV" or "HOV" in name:
-          skims[name]= evTravelTimeTable/100
-         else:        #  skims[name].attrs.timeperiod = 'ev'
-          skims[name]= evTravelTimeTable
-     elif "DISTBIKE" in name:
-          skims[name]= distancesTable*1.3   
-     elif "DISTWALK" in name:
-          skims[name]= distancesTable*2      
-     else:
-        skims[name]= distancesTable
-    # mode
-    # if "WLK" in name:
-    #      skims['distance'].attrs.mode = 'wlk'
+        if any([x in name for x in ["SOV", "HOV" ]]):
+         skims[name]= amTravelTimeTable/1000
+        else:
+         skims[name]= amTravelTimeTable
 
-  
+     elif "MD" in name:
+        if any([x in name for x in ["SOV", "HOV" ]]):
+         skims[name]= mdTravelTimeTable/1000
+        else:
+        #  skims[name].attrs.timeperiod = 'md'
+         skims[name]= mdTravelTimeTable
+
+     elif "PM" in name:
+        if any([x in name for x in ["SOV", "HOV" ]]):
+         skims[name]= pmTravelTimeTable/1000
+        else:
+        #  skims[name].attrs.timeperiod = 'pm'
+         skims[name]= pmTravelTimeTable
+
+     elif "EV" in name:
+        if any([x in name for x in ["SOV", "HOV" ]]):
+         skims[name]= evTravelTimeTable/1000
+        else:
+        #  skims[name].attrs.timeperiod = 'ev'
+         skims[name]= evTravelTimeTable
+
+     elif "DISTBIKE" in name:
+          skims[name]= distancesTable*0.9 
+     elif "DISTWALK" in name:
+          skims[name]= distancesTable*1.2 
+
+   #distance
+     else:
+        skims[name]= distancesTable*0.7
      
-         
-         
-    #  print(name)
 
     prototype_skims.close()
 
     skims.close()
-
-
-    # # Open an OMX file for reading only
-    # print('Reading skims.omx')
-    # skims = omx.open_file(folder +'/output/activitysim_input/skims.omx')
-
-    # print ('Shape:', skims.shape())                 # (100,100)
-    # print ('Number of tables:', len(skims))         # 3
-    # # print ('Table names:', skims.list_matrices())   # ['distance','distance2',',distance3']
-
-
-
-    # # Work with data. Pass a string to select matrix by name:
-    # # -------------------------------------------------------
-    # distance = skims['distance']
-    # distance2 = skims['distance2']
-    # distance3 = skims['distance3']
-
-    # # halves = distance * 0.5  # CRASH!  Don't modify an OMX object directly.
-    # #                    # Create a new numpy array, and then edit it.
-    # halves = np.array(distance) * 0.5
-
-    # first_row = distance2[0]
-    # first_row[:] = 0.5 * first_row[:]
-
-    # my_very_special_zone_value = distance2[10][25]
-
-    # print('halves:', halves) 
-
-    # print('my_very_special_zone_value:', my_very_special_zone_value) 
-
-
-
-
-    # # FANCY: Use attributes to find matrices
-    # # --------------------------------------
-    # skims.close()                            # was opened read-only, so let's reopen.
-    # skims = omx.open_file(folder +'/output/activitysim_input/skims.omx','a')  # append mode: read/write existing file
-
-    # skims['distance'].attrs.timeperiod = 'am'
-    # skims['distance'].attrs.mode = 'hwy'
-
-    # skims['distance2'].attrs.timeperiod = 'md'
-
-    # skims['distance3'].attrs.timeperiod = 'am'
-    # skims['distance3'].attrs.mode = 'trn'
-
-    # print('attributes:', skims.list_all_attributes())       # ['mode','timeperiod']
-
-    # # Use a DICT to select matrices via attributes:
-
-    # all_am_trips = skims[ {'timeperiod':'am'} ]                    # [distance,distance3]
-    # all_hwy_trips = skims[ {'mode':'hwy'} ]                        # [distance]
-    # all_am_trn_trips = skims[ {'mode':'trn','timeperiod':'am'} ]   # [distance3]
-
-    # print('sum of some tables:', np.sum(all_am_trips))
-
-    # # SUPER FANCY: Create a mapping to use TAZ numbers instead of matrix offsets
-    # # --------------------------------------------------------------------------
-    # # (any mapping would work, such as a mapping with large gaps between zone
-    # #  numbers. For this simple case we'll just assume TAZ numbers are 1-100.)
-
-    # taz_equivs = np.arange(1,bg_counts+1)                  # 1-100 inclusive
-
-    # skims.create_mapping('taz', taz_equivs)
-    # print('mappings:', skims.list_mappings()) # ['taz']
-
-    # tazs = skims.mapping('taz') # Returns a dict:  {1:0, 2:1, 3:2, ..., 100:99}
-    # distance3 = skims['distance3']
-    # print('cell value:', distance3[tazs[bg_counts]][tazs[bg_counts]]) # 3.0  (taz (100,100) is cell [99][99])
-    # print('all table 3', distance3)
-
-    # skims.close()
-
-    # delete local folder
-
-    # shutil.rmtree(folder)

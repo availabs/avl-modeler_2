@@ -19,7 +19,7 @@ import rq
 
 
 
-queue = rq.Queue('rq_popsynth', connection=Redis(), default_timeout=600)
+queue = rq.Queue('rq_popsynth', connection=Redis())
 
 
 app = Flask(__name__)
@@ -607,7 +607,7 @@ def projectCreate_1():
     project_name = request_data_sql['project_name']
     status = request_data_sql['status']
 
-    job = queue.enqueue('tasks.popsynth.run_popsynth', args, project_id, selectedBGs, job_timeout=3600)
+    job = queue.enqueue('tasks.popsynth.run_popsynth', args, project_id, selectedBGs)
 
     return "{\"reponse\": \"success\"}"
     # return "{\"id\": project_id, \"project_name\": project_name, \"status\": status}"
@@ -645,7 +645,7 @@ def senarioTableCreate():
     # args = parser.parse_args(  ['--working_dir', os.getcwd() + '/popsynth_runs/activitysim/activitysim/examples/test_prototype_mtc_new/'])
     # path= '~/AVAIL/code/avl-modeler2/server/popsynth_runs/test_prototype_mtc_new'
    
-    job = queue.enqueue('tasks.popsynth.run_senario', args, project_id, senario_id, job_timeout=3600)
+    job = queue.enqueue('tasks.popsynth.run_senario', args, project_id, senario_id)
     # job = queue.enqueue('run_senario', args, project_id, senario_id)
 
     return "{\"message\": \"this message\"}"
@@ -699,15 +699,3 @@ def overviewBySenario(senarioId):
     return jsonify({"senarioId": senarioId, "Households": households[0]["num_hh"], "Persons": persons[0]["num_p"],"Trips": trips[0]["num_t"]})
 
 
-
-@app.route('/senarios/<senarioId>/<projectId>/destination/')
-def destinationBySenario(senarioId, projectId):
-   conn = get_db_connection()
-
-   destinationSql = "SELECT senario_"+senarioId+"_trips.destination AS TAZ, project_"+projectId+"_households.BG AS bg, COUNT(1) AS count FROM senario_"+senarioId+"_trips INNER JOIN project_"+projectId+"_households ON project_"+projectId+"_households.TAZ = senario_"+senarioId+"_trips.destination GROUP BY TAZ"
-
-   destination = conn.execute(destinationSql).fetchall()
-
-#    print("destination", destination )
-
-   return jsonify(destination)

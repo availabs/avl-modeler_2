@@ -7,7 +7,7 @@ from markupsafe import re
 #from sim_settings.settings import models
 import argparse
 import os
-from activitysim.cli.run import add_run_args, run
+from activitysim.cli.run import add_run_args
 import json
 import csv
 import yaml
@@ -16,10 +16,6 @@ from redis import Redis
 from rq import Queue
 import rq
 # import popsynth
-
-
-
-queue = rq.Queue('rq_popsynth', connection=Redis(), default_timeout=600)
 
 
 app = Flask(__name__)
@@ -71,8 +67,6 @@ def projectsByUser(userId):
         'SELECT a.id, a.Name as name, a.geoList as geo_list, a.options, a.status FROM projects_users INNER JOIN projects as a ON projects_users.project_id=a.id WHERE projects_users.user_id=?', (userId,)).fetchall()
     # print("what is user ID", userId, cursor.lastrowid)
     return jsonify(projects)
-
-
 
 
 @app.route('/projects/geometry/<selectedPUMA>')
@@ -408,7 +402,6 @@ def projectCreate():
     return "inserted"
 
 
-
 @app.route('/project/create_1', methods=['POST'])
 # queue = rq.Queue('popSynth_test3', connection=Redis())
 # job = queue.enqueue(projectCreate_1)
@@ -594,120 +587,20 @@ def projectCreate_1():
 
     # return to the client the object #{id: $project_id, project_name: '', status: 'processing' }
 
-    # queue = rq.Queue('rq_popsynth', connection=Redis())
+    queue = rq.Queue('rq_popsynth', connection=Redis())
 
     parser = argparse.ArgumentParser()
     add_run_args(parser)
     args = parser.parse_args(
         ['--working_dir', os.getcwd() + '/popsynth_runs/' + directory])
-    print('testing args', args)
+    # print('testing args', args)
     # job = queue.enqueue(run(args))
     #
     project_id = directory
     project_name = request_data_sql['project_name']
     status = request_data_sql['status']
 
-    job = queue.enqueue('tasks.popsynth.run_popsynth', args, project_id, selectedBGs, job_timeout=3600)
+    job = queue.enqueue('tasks.popsynth.run_popsynth', args, project_id, selectedBGs)
 
     return "{\"reponse\": \"success\"}"
     # return "{\"id\": project_id, \"project_name\": project_name, \"status\": status}"
-
-
-@app.route('/senario/create', methods=['POST'])
-def senarioTableCreate():
-    # check user details from db
-    print("post success")
-    request_data = request.json
-    
-    print("request_data", request_data)
-
-    project_id = request_data['project_id']
-    # return jsonify(request_data)
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        'INSERT INTO senarios values (?, ?, ?, ?)', (None, request_data['senario_name'], request_data['status'], request_data['project_id']))
-
-    conn.commit()
-
-    # run senario
-    # parser = argparse.ArgumentParser()
-    # add_run_args(parser)
-    # args = parser.parse_args()
-    # sys.exit(run(args))
-
-    senario_id = str(cursor.lastrowid) 
-    # queue = rq.Queue('rq_activitysim', connection=Redis())
-
-    parser = argparse.ArgumentParser()
-    add_run_args(parser)
-    args = parser.parse_args(  ['--working_dir', os.getcwd() + '/popsynth_runs/test_prototype_mtc_new/'])
-    # args = parser.parse_args(  ['--working_dir', os.getcwd() + '/popsynth_runs/activitysim/activitysim/examples/test_prototype_mtc_new/'])
-    # path= '~/AVAIL/code/avl-modeler2/server/popsynth_runs/test_prototype_mtc_new'
-   
-    job = queue.enqueue('tasks.popsynth.run_senario', args, project_id, senario_id, job_timeout=3600)
-    # job = queue.enqueue('run_senario', args, project_id, senario_id)
-
-    return "{\"message\": \"this message\"}"
-
-
-
-@app.route('/senarios/<projectId>')
-def senarioByProjectId(projectId):
-    conn = get_db_connection()
-    # cursor = conn.cursor()
-    seniaros = conn.execute(
-        'SELECT * FROM senarios WHERE senarios.project_id=?', (projectId,)).fetchall()
-    # print("what is user ID", userId, cursor.lastrowid)
-    return jsonify(seniaros)
-
-
-
-@app.route('/senarios/<senarioId>/status')
-def statusBySenario(senarioId):
-    conn = get_db_connection()
-    # cursor = conn.cursor()
-    status = conn.execute(
-        #     'SELECT a.id, a.status FROM projects as a where a.id =?', (projectId,)).fetchall()
-        # return jsonify(status)
-
-        'SELECT status FROM senarios where id =?', (senarioId,)).fetchall()
-    return jsonify(status)
-
-
-@app.route('/senarios/<senarioId>/overview')
-def overviewBySenario(senarioId):
-    conn = get_db_connection()
-    # cursor = conn.cursor()
-
-    hhsql = "SELECT COUNT(1) as num_hh FROM senario_"+senarioId+"_households"
-    psql = "SELECT COUNT(1) as num_p FROM senario_"+senarioId+"_persons"
-    tsql = "SELECT COUNT(1) as num_t FROM senario_"+senarioId+"_trips"
-    
-
-    households = conn.execute(
-        hhsql).fetchall()
-    persons = conn.execute(
-        psql).fetchall()
-    trips = conn.execute(
-        tsql).fetchall()
-    
-    print("total households and persons",
-          households[0].values(), persons[0].values(), households[0]["num_hh"], persons[0]["num_p"], households, persons)
-
-    # return jsonify({"projectID": projectId, "Households": households[0].values()[0].num_hh, "Persons": persons})
-    return jsonify({"senarioId": senarioId, "Households": households[0]["num_hh"], "Persons": persons[0]["num_p"],"Trips": trips[0]["num_t"]})
-
-
-
-@app.route('/senarios/<senarioId>/<projectId>/destination/')
-def destinationBySenario(senarioId, projectId):
-   conn = get_db_connection()
-
-   destinationSql = "SELECT senario_"+senarioId+"_trips.destination AS TAZ, project_"+projectId+"_households.BG AS bg, COUNT(1) AS count FROM senario_"+senarioId+"_trips INNER JOIN project_"+projectId+"_households ON project_"+projectId+"_households.TAZ = senario_"+senarioId+"_trips.destination GROUP BY TAZ"
-
-   destination = conn.execute(destinationSql).fetchall()
-
-#    print("destination", destination )
-
-   return jsonify(destination)

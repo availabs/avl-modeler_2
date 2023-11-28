@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { withAuth } from "modules/avl-components/src";
 import ProjectList from "pages/Home/components/ProjectList";
 import CreateButton from "pages/Home/components/CreateButton";
-import CreateButtonOld from "pages/Home/components/CreateButton_old";
 
 const Home = ({ user }) => {
   return (
