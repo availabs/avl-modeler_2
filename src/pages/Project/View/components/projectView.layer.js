@@ -56,7 +56,7 @@ class PopSynthLayer extends LayerContainer {
       source: "bgs",
       type: "fill",
       paint: {
-        "fill-color": "gray",
+        "fill-color": "white",
         "fill-opacity": 1,
         "fill-outline-color": "red",
       },

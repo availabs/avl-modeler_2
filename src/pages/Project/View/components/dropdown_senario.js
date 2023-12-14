@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { scaleThreshold } from "d3-scale";
 import ckmeans from "../../../../utils/ckmeans";
-// import get from "lodash.get";
 
-// import Charts from "./charts";
-
+//for senarioMap fill color domain functions
 const colors = ["#FEEDDE", "#FDBE85", "#FD8D3C", "#E6550D", "#A63603"];
 
 const getDomain = (data = [], range = []) => {
@@ -29,7 +27,7 @@ const Dropdown = ({
 }) => {
   const [senarioData, setSenarioData] = useState([]);
   const [senarioOverview, setSenarioOverview] = useState({});
-  const [senarioDestination, setSenarioDestination] = useState();
+  const [senarioDestination, setSenarioDestination] = useState([]);
   // const [senarioId, setSenarioId] = useState("");
 
   console.log("senario_dropdown_props", projectId, layer);
@@ -39,10 +37,8 @@ const Dropdown = ({
   const handleChange = (e) => {
     if (e.target.value) {
       console.log("e.target.value-------", e.target.value);
-      // setSenarioId(e.target.value);
+
       selectedSenario(e.target.value);
-      // selectedSenario(e.target.value);
-      //   setSelectedSenario([e.target.value]);
 
       fetch(`http://localhost:5000/senarios/${e.target.value}/overview`)
         .then((response) => response.json())
@@ -53,7 +49,7 @@ const Dropdown = ({
           }
         });
 
-      // to get the counts for selectedBGs
+      // to get the counts for destination based on BGs (Taz)
       fetch(
         `http://localhost:5000/senarios/${e.target.value}/${projectId}/destination`
       )
@@ -78,7 +74,7 @@ const Dropdown = ({
     acc[parseInt(bg.slice(5, 12)).toString()] = bg;
     return acc;
   }, {});
-  console.log("selectedBlockGroupsNew--", selectedBlockGroupsNew);
+  console.log("selectedBlockGroupsNew--", selectedBlockGroupsNew, BGmapping);
 
   //make destination map function to get the counts for selectedBGs and make map
   //    destination data
@@ -125,6 +121,7 @@ const Dropdown = ({
       Object.values(senarioDestinationbyBgs).map((v) => colorScale(v))
     );
 
+    //format color with GEOID(full)
     const geoColors = Object.keys(senarioDestinationbyBgs).reduce((acc, k) => {
       acc[BGmapping[k].toString()] = colorScale(senarioDestinationbyBgs[k]);
       return acc;
@@ -149,28 +146,6 @@ const Dropdown = ({
         }
       });
   }, [projectId]);
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/${senarioId}/overview`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data !== null) {
-  //         console.log("view senario overview--------------------", data);
-  //         setSenarioOverview(data);
-  //       }
-  //     });
-  // }, [senarioId]);
-
-  //   useEffect(() => {
-  //     const getVariables = async () => {
-  //       const response = await fetch("/senarios/<projectId>");
-  //       const data = await response.json();
-  //       console.log("metaData--", data);
-
-  //       setMetaVariables(data);
-  //     };
-  //     getVariables();
-  //   }, []);
 
   return (
     <div>
@@ -200,7 +175,11 @@ const Dropdown = ({
       <div className="flex flex-shrink-0 justify-center px-4 py-4 mt-2">
         <button
           type="submit"
-          className="ml-4 rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          disabled={
+            selectedBlockGroupsNew.length === 0 ||
+            senarioDestination.length === 0
+          }
+          className="ml-4 rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  disabled:bg-gray-400 disabled:cursor-not-allowed"
           onClick={() => {
             senarioMap();
           }}
@@ -208,14 +187,6 @@ const Dropdown = ({
           Destination Map
         </button>
       </div>
-
-      {/* <div>
-        <Charts
-          selectedValue={selectedValue}
-          projectId={projectId}
-          selectedBlockGroups={selectedBlockGroups}
-        />
-      </div> */}
     </div>
   );
 };
