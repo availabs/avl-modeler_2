@@ -91,7 +91,9 @@ def selectedBGgeometry(selectedPUMA):
 # load specialite
     con.enable_load_extension(True)
 
-    cur.execute(''' SELECT load_extension('/usr/local/lib/mod_spatialite')''')
+    # cur.execute(''' SELECT load_extension('/usr/local/lib/mod_spatialite')''')
+    cur.execute(''' SELECT load_extension('/home/jin/miniforge3/envs/ASIM_DEV_new/lib/mod_spatialite')''')
+    
 
 
     selected_bg_table = f'''SELECT

@@ -1,0 +1,215 @@
+    1  sudo apt-get update
+    2  sudo apt-get upgrade
+    3  sudo apt-get update
+    4  sudo apt-get upgrade
+    5  exit
+    6  sudo apt-get update
+    7  sudo apt-get upgrade
+    8  exit
+    9  cd Downloads/
+   10  ls
+   11  sudo dpkg -i code_1.85.1-1702462158_amd64.deb 
+   12  code
+   13  sudo apt-get install git
+   14  ls
+   15  echo /usr/bin/bash
+   16  ls
+   17  cd AVAIL/
+   18  cd code/
+   19  conda update conda -n base
+   20  sudo apt install curl -y
+   21  ls
+   22  cd /tmp/
+   23  curl --output anaconda.sh https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
+   24  sha256sum anaconda.sh
+   25  bash anaconda.sh
+   26  conda list
+   27  cd..
+   28  conda list
+   29  eval "$(/home/jin/anaconda3/bin/conda shell.YOUR_SHELL_NAME hook)" 
+   30  cd ..
+   31  python -version 
+   32  python --version 
+   33  python3 -version 
+   34  python3 --version 
+   35  mkdir workspace
+   36  cd workspace/
+   37  mamba env create -p ASIM-ENV --file https://raw.githubusercontent.com/ActivitySim/activitysim/main/conda-environments/activitysim-dev-base.yml
+   38  cd ..
+   39  clear
+   40  sudo apt-get install language-pack-ko
+   41  sudo apt-get install korean*
+   42  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+   43  sudo dpkg -I google-chrome-stable_current_amd64.deb
+   44  sudo apt-get install libxss1 libappindicator1 libindicator7
+   45  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+   46  sudo apt install ./google-chrome*.deb
+   47  curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+   48  sudo ap
+   49  CLEAWR
+   50  clear
+   51  LS
+   52  ls
+   53  cd AVAIL/code
+   54  ls
+   55  mamba env create -p ASIM_DEV_new --file https://raw.githubusercontent.com/ActivitySim/activitysim/main/conda-environments/activitysim-dev-base.yml
+   56  conda activate
+   57  ls
+   58  sudo apt-get update
+   59  wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh -O ~/miniforge.sh
+   60  bash ~/miniforge.sh -b -p ~/miniforge
+   61  rm ~/miniforge.sh
+   62  curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
+   63  bash Miniforge3-Linux-x86_64.sh
+   64  bash Miniforge3-Linux-x86_64.sh
+   65  curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
+   66  bash Miniforge3-Linux-x86_64.sh
+   67  mamba env create -p ASIM_DEV_new --file https://raw.githubusercontent.com/ActivitySim/activitysim/main/conda-environments/activitysim-dev-base.yml
+   68  conda activate ./ASIM_DEV_new
+   69  mamba env create -p ASIM_DEV_new --file https://raw.githubusercontent.com/ActivitySim/activitysim/main/conda-environments/activitysim-dev-base.yml
+   70  LS
+   71  ls
+   72  cd AVAIL/code
+   73  mamba env create -p ASIM_DEV_new --file https://raw.githubusercontent.com/ActivitySim/activitysim/main/conda-environments/activitysim-dev-base.yml
+   74  conda activate ASIM_DEV_new
+   75  conda activate /home/jin/AVAIL/code/ASIM_DEV_new
+   76  conda deactivate
+   77  conda activate ./ASIM_DEV_new
+   78  git clone https://github.com/ActivitySim/sharrow.git
+   79  python -m pip install -e ./sharrow
+   80  conda deactivate
+   81  ls
+   82  cd activitysim/
+   83  mamba env create -p ASIM-ENV --file https://raw.githubusercontent.com/ActivitySim/activitysim/main/conda-environments/activitysim-dev-base.yml
+   84  conda activate ./ASIM_DEV_new
+   85  mamba env create -p ASIM_DEV_new --file https://raw.githubusercontent.com/ActivitySim/activitysim/main/conda-environments/activitysim-dev-base.yml
+   86  conda activate ./ASIM_DEV_new
+   87  git clone https://github.com/ActivitySim/sharrow.git
+   88  python -m pip install -e ./sharrow
+   89  git clone https://github.com/ActivitySim/activitysim.git
+   90  ls
+   91  cd activitysim/
+   92  git switch develop
+   93  cd ..
+   94  python -m pip install -e ./activitysim
+   95  cd AVAIL/code
+   96  ls
+   97  cd activitysim/
+   98  ls
+   99  cd activitysim/
+  100  ls
+  101  conda activate ASIM_DEV_new
+  102  cd ..
+  103  conda activate ASIM_DEV_new
+  104  ls
+  105  cd ..
+  106  cd activitysim/
+  107  conda activate ./ASIM_DEV_new
+  108  cd activitysim/
+  109  git switch develop
+  110  ls
+  111  cd ..
+  112  conda install pytables
+  113  conda update -n base -c conda-forge conda
+  114  ls
+  115  pip install populationsim
+  116  ls
+  117  cd populationsim/
+  118  ls
+  119  cd example_calm/
+  120  ls
+  121  python run_populationsim.py 
+  122  cd ..
+  123  deactivate ASIM_DEV_new/
+  124  conda deactivate
+  125  ls
+  126  cd populationsim/
+  127  ls
+  128  conda create -n popsim python=3.8
+  129  conda activate popsim
+  130  conda install pytables
+  131  pip install populationsim
+  132  ls
+  133  cd example_calm/
+  134  python run_populationsim.py
+  135  pip list
+  136  cd ..
+  137  history > log_histiory_122223.log
+  138  ls
+  139  conda deactivate
+  140  conda create -n popsim_1 python=3.9
+  141  conda activate popsim_1
+  142  conda deactivate
+  143  conda activate popsim
+  144  conda create -n popsim python=3.9
+  145  conda activate popsim
+  146  conda install pytables
+  147  cd AVAIL/code
+  148  ls
+  149  cd activitysim/
+  150  ls
+  151  conda activate ASIM_DEV_new
+  152  conda deactivate
+  153  conda activate ./ASIM_DEV_new
+  154  cd ..
+  155  cd code/
+  156  ls
+  157  cd avl-modeler2
+  158  ls
+  159  cd server/
+  160  ls
+  161  cd popsynth_runs/
+  162  ls
+  163  cd test_prototype_mtc_new_t
+  164  cd test_prototype_mtc_new_test/
+  165  activitysim run -c configs -o output -d data 
+  166  cd ..
+  167  conda deactivate
+  168  cd avl-modeler2
+  169  ls
+  170  cd server
+  171  ls
+  172  clear
+  173  cd popsynth_runs/
+  174  cd ..
+  175  conda activate ASIM_DEV_New
+  176  conda activate ASIM_DEV_new
+  177  conda deactivate
+  178  cd server
+  179  conda activate ASIM_DEV_new
+  180  conda deactivate 
+  181  cd ll
+  182  conda activate ASIM_DEV_new
+  183  flask run
+  184  ls
+  185  npm start
+  186  sudo apt install npm
+  187  npm start
+  188  npm install react-scripts
+  189  npm audit fix
+  190  npm start
+  191  sudo apt install libsqlite3-mod-spatialite
+  192  sudo apt-get update 
+  193  sudo apt-get upgrade
+  194  sudo apt-get sqlitebrowser
+  195  sudo apt-get install sqlitebrowser
+  196  npm start
+  197  conda activate ASIM_DEV_new
+  198  cd server
+  199  rq worker rq_popsynth
+  200  echo /usr/bin/bash
+  201  cd server
+  202  conda activate ASIM_DEV_new
+  203  flask run
+  204  conda install sqlite
+  205  conda update -n base -c conda-forge conda
+  206  sqlite
+  207  conda sqlite 
+  208  sqlite3
+  209  flask run
+  210  locate mod_spatialite
+  211  sudo apt install plocate
+  212  locate mod_spatialite
+  213  cd server
+  214  ls
+  215  history > log_hisotry_010424.log

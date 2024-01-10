@@ -25,8 +25,11 @@ const ProjectThumb = ({ projectId, project, deleteProject }) => {
           if (total !== null) {
             console.log("total----------", total);
 
-            let totalHouseholds = Object.values(total.totalHouseholds[0]);
-            let totalPersons = Object.values(total.totalPersons[0]);
+            // let totalHouseholds = Object.values(total.totalHouseholds[0]);
+            // let totalPersons = Object.values(total.totalPersons[0]);
+
+            let totalHouseholds = total.Households;
+            let totalPersons = total.Persons;
 
             // let totalHouseholds = Object.values(total.totalHouseholds[0]) ?? 0;
             // let totalPersons = Object.values(total.totalPersons[0]) ?? 0;
